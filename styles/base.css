@@ -24,6 +24,8 @@ input, button, textarea {
   font-size: inherit;
   font-family: inherit;
   color: inherit;
+  width: 0;
+  min-width: 6em;
 }
 
 input:focus,
