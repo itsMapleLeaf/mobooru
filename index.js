@@ -23,7 +23,9 @@ app.get('/api/images', (req, res) => {
 
 app.get('/api/images/:previous', (req, res) => {
   const index = images.indexOf(req.params.previous)
-  res.send({ images: images.slice(index, index + 3) })
+  const start = index + 1
+  const end = Math.min(index + 4, images.length)
+  res.send({ images: images.slice(start, end) })
 })
 
 app.listen(port, () => {
