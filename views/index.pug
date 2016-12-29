@@ -13,14 +13,14 @@ html(lang='en')
     link(rel="stylesheet", href="styles/ui.css")
     link(rel="stylesheet", href="styles/mobooru.css")
 
+    script(src='scripts/pagination.js' defer)
+
   body
     .mb-header.ui-full-width.ui-fixed.ui-shadow.ui-flex-row
       a(href='/'): h2.mb-title mobooru
       input.mb-input.ui-flex-grow(placeholder='Search...')
-      //- a.mb-icon-button(href='#'): i.mdi.mdi-magnify
       a.mb-icon-button(href='#'): i.mdi.mdi-upload
 
-    .mb-image-list
-      .ui-flex-row.ui-flex-justify-center.ui-flex-wrap
-        each src in images
-          a.mb-image.ui-shadow(href='#', style=`background-image: url(images/${src})`)
+    .mb-image-list.ui-flex-row.ui-flex-justify-center.ui-flex-wrap
+        //- each src in images
+        //-   a.mb-image.ui-shadow(href='#', style=`background-image: url(images/${src})`)
