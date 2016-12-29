@@ -13,8 +13,12 @@ function fetchImages() {
   return window.fetch(url)
     .then(res => res.json())
     .then(data => {
-      data.images.forEach(image => images.push(image))
-      renderImages()
+      if (data.images != null && data.images.length > 0) {
+        data.images.forEach(image => images.push(image))
+        renderImages()
+      } else {
+        throw 'no more images'
+      }
     })
 }
 
@@ -38,16 +42,20 @@ function scrolledToBottom() {
 function init() {
   let fetching = false
   fetchImages()
-  imageListElement.addEventListener('scroll', ev => {
-    if (scrolledToBottom() && !fetching) {
+  imageListElement.addEventListener('wheel', ev => {
+    if (ev.deltaY > 0 && scrolledToBottom() && !fetching) {
       console.log('fetching images...')
       fetching = true
-      fetchImages().then(() => {
-        console.log('done')
-        fetching = false
-      })
+      fetchImages()
+        .then(() => {
+          console.log('done')
+          fetching = false
+        })
+        .catch(err => {
+          console.log("couldn't fetch:", err)
+        })
     }
-  })
+  }, { passive: true })
 }
 
 init()
