@@ -10,7 +10,7 @@ function fetchImages() {
     ? '/api/images/' + last(images)
     : '/api/images'
 
-  window.fetch(url)
+  return window.fetch(url)
     .then(res => res.json())
     .then(data => {
       data.images.forEach(image => images.push(image))
@@ -32,14 +32,20 @@ function renderImageElement(url) {
 function scrolledToBottom() {
   const {scrollTop, scrollHeight} = imageListElement
   const {innerHeight} = window
-  return scrollTop === scrollHeight - innerHeight
+  return scrollTop > (scrollHeight - innerHeight) - 50
 }
 
 function init() {
+  let fetching = false
   fetchImages()
   imageListElement.addEventListener('scroll', ev => {
-    if (scrolledToBottom()) {
-      fetchImages()
+    if (scrolledToBottom() && !fetching) {
+      console.log('fetching images...')
+      fetching = true
+      fetchImages().then(() => {
+        console.log('done')
+        fetching = false
+      })
     }
   })
 }
