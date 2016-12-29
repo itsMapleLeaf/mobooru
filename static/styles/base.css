@@ -1,3 +1,10 @@
+/* anti-bullshit reset */
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
 /* base element styles */
 :root {
   font-family: Roboto;
