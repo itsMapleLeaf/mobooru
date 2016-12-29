@@ -6,10 +6,9 @@ const port = +process.env.PORT || 8080
 
 const app = express()
 
-app.use('/styles', express.static('styles'))
-app.use('/scripts', express.static('scripts'))
-
 app.set('view engine', 'pug')
+
+app.use(express.static('static'))
 
 app.get('/', (req, res) => {
   res.render('index')
