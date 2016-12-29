@@ -30,12 +30,8 @@
   width: 16em;
   height: 16em;
   margin: 0.4em;
-  overflow: hidden;
-}
-
-.mb-image img {
-  max-width: 100%;
-  display: block;
+  background-size: cover;
+  background-position-x: center;
 }
 
 @media (max-width: 480px) {
