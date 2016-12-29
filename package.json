@@ -1,0 +1,11 @@
+{
+  "name": "mobooru",
+  "author": "just nobody",
+  "version": "0.1.0",
+  "description": "a mobile-friendly image browser",
+  "license": "MIT",
+  "dependencies": {
+    "express": "^4.14.0",
+    "mdi": "^1.7.22"
+  }
+}
