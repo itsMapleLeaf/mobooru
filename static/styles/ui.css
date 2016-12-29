@@ -1,0 +1,43 @@
+/* utility styles */
+.ui-full-width {
+  left: 0;
+  right: 0;
+}
+
+.ui-full-height {
+  top: 0;
+  bottom: 0;
+}
+
+.ui-shadow {
+  box-shadow: 0 0.1em 0.3em #bbb;
+}
+
+.ui-fixed {
+  position: fixed;
+}
+
+.ui-flex-row {
+  display: flex;
+}
+
+.ui-flex-column {
+  display: flex;
+  flex-direction: column;
+}
+
+.ui-flex-justify-center {
+  justify-content: center;
+}
+
+.ui-flex-align-center {
+  align-items: center;
+}
+
+.ui-flex-grow {
+  flex-grow: 1;
+}
+
+.ui-flex-wrap {
+  flex-wrap: wrap;
+}

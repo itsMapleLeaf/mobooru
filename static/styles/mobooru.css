@@ -1,0 +1,45 @@
+/* mobooru elements */
+.mb-header {
+  padding: 0.3em 0.6em;
+  background-color: white;
+}
+
+.mb-input {
+  border-bottom: 2px solid #ddd;
+  transition: 0.2s border-bottom-color;
+  margin: 0 0.3em;
+  padding: 0.1em 0.3em;
+}
+
+.mb-input:hover {
+  border-bottom: 2px solid lightskyblue;
+}
+
+.mb-icon-button {
+  color: #aaa;
+  display: inline-block;
+  padding: 0.3em 0.5em;
+}
+
+.mb-image-list {
+  padding-top: 3em;
+}
+
+.mb-image {
+  display: inline-block;
+  width: 16em;
+  height: 16em;
+  margin: 0.4em;
+  overflow: hidden;
+}
+
+.mb-image img {
+  max-width: 100%;
+  display: block;
+}
+
+@media (max-width: 480px) {
+  .mb-title {
+    display: none;
+  }
+}
