@@ -1,6 +1,6 @@
 {
   "compileOnSave": true,
-  "include": ["./app"],
+  "include": ["./src"],
   "compilerOptions": {
     "module": "commonjs",
     "target": "es6",

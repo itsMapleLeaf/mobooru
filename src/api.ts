@@ -1,6 +1,6 @@
 import {Express} from 'express'
 import {Db} from 'mongodb'
-import multer = require('multer')
+import * as multer from 'multer'
 import * as path from 'path'
 import * as fs from 'fs'
 import * as database from './database'
