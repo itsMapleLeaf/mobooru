@@ -1,7 +1,7 @@
 const multer = require('multer')
 const path = require('path')
 const bodyParser = require('body-parser')
-// const database = require('./database')
+const database = require('./database')
 
 const upload = multer({
   dest: path.resolve(__dirname, '../data/images')
@@ -9,9 +9,7 @@ const upload = multer({
 
 function init (app, db) {
   app.get('/image/:id', (req, res) => {
-    db.collection('images').findOne({ id: req.params.id })
-      .then(result => result || Promise.reject(`image for id ${req.params.id} not found`))
-      .then(info => path.resolve(__dirname, '../data/images', info.filename))
+    database.getImagePath(db, req.params.id)
       .then(imagePath => res.sendFile(imagePath))
       .catch(error => res.send({ error }))
   })
@@ -21,8 +19,7 @@ function init (app, db) {
   app.get('/tags/:id', (req, res) => {})
 
   app.get('/images', bodyParser.json(), (req, res) => {
-    db.collection('images').find({}).toArray()
-      .then(images => images.map(img => img.id))
+    database.getImages(db)
       .then(images => res.send({ images }))
   })
 
@@ -34,7 +31,7 @@ function init (app, db) {
     const {filename} = req.file
     const id = filename
 
-    db.collection('images').insert({ id, filename })
+    database.addImage(id, filename)
       .then(() => console.log(`added image ${id}`))
       .catch(err => console.error(err))
   })
