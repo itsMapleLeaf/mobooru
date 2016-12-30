@@ -1,4 +1,4 @@
-import {Express} from 'express'
+import {Express, Router} from 'express'
 import {Db} from 'mongodb'
 import * as multer from 'multer'
 import * as path from 'path'
@@ -15,27 +15,29 @@ function rename (oldPath: string, newPath: string) {
   })
 }
 
-export function init (app: Express, db: Db) {
-  app.get('/image/:id', (req, res) => {
+export default function (db: Db) {
+  const router = Router()
+
+  router.get('/image/:id', (req, res) => {
     database.getImagePath(db, req.params.id)
       .then(imagePath => res.sendFile(imagePath))
       .catch(error => res.send({ error }))
   })
 
-  app.get('/thumb/:id', (req, res) => {})
+  router.get('/thumb/:id', (req, res) => {})
 
-  app.get('/tags/:id', (req, res) => {})
+  router.get('/tags/:id', (req, res) => {})
 
-  app.get('/images', (req, res) => {
+  router.get('/images', (req, res) => {
     database.getImages(db)
       .then(images => res.send({ images }))
   })
 
-  app.post('/tag/:id/:tag', (req, res) => {})
+  router.post('/tag/:id/:tag', (req, res) => {})
 
-  app.delete('/tag/:id/:tag', (req, res) => {})
+  router.delete('/tag/:id/:tag', (req, res) => {})
 
-  app.post('/upload', upload.single('image'), (req, res) => {
+  router.post('/upload', upload.single('image'), (req, res) => {
     const id = req.file.filename
     const extension = path.parse(req.file.originalname).ext
     const filename = req.file.path + extension
@@ -45,4 +47,6 @@ export function init (app: Express, db: Db) {
       .then(() => console.log(`added image ${id}`))
       .catch(err => console.error(err))
   })
+
+  return router
 }
