@@ -37,6 +37,14 @@
   background-position-x: center;
 }
 
+.mb-upload-form {
+
+}
+
+.mb-upload-form > form {
+
+}
+
 @media (max-width: 480px) {
   .mb-title {
     display: none;

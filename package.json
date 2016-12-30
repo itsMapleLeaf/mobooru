@@ -5,11 +5,20 @@
   "description": "a mobile-friendly image browser",
   "license": "MIT",
   "dependencies": {
+    "body-parser": "^1.15.2",
     "express": "^4.14.0",
     "mdi": "^1.7.22",
+    "mongodb": "^2.2.16",
+    "multer": "^1.2.1",
     "pug": "^2.0.0-beta6"
   },
   "scripts": {
     "start": "node index.js"
+  },
+  "engines": {
+    "node": "6.x.x"
+  },
+  "devDependencies": {
+    "standard": "^8.6.0"
   }
 }

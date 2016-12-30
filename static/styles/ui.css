@@ -1,4 +1,11 @@
 /* utility styles */
+.ui-full-screen {
+  top: 0;
+  bottom: 0;
+  left: 0;
+  right: 0;
+}
+
 .ui-full-width {
   left: 0;
   right: 0;
@@ -26,6 +33,11 @@
   flex-direction: column;
 }
 
+.ui-flex-center {
+  justify-content: center;
+  align-items: center;
+}
+
 .ui-flex-justify-center {
   justify-content: center;
 }
@@ -40,4 +52,8 @@
 
 .ui-flex-wrap {
   flex-wrap: wrap;
+}
+
+.ui-shade {
+  background-color: rgba(0, 0, 0, 0.5);
 }

@@ -1,14 +1,16 @@
 const images = []
 const imageListElement = document.querySelector('.mb-image-list')
 
-function last(list) {
+function last (list) {
   return list[list.length - 1]
 }
 
-function fetchImages() {
-  const url = images.length > 0
-    ? '/api/images/' + last(images)
-    : '/api/images'
+function fetchImages () {
+  // const url = images.length > 0
+  //   ? '/images/' + last(images)
+  //   : '/images'
+
+  const url = '/images'
 
   return window.fetch(url)
     .then(res => res.json())
@@ -17,45 +19,41 @@ function fetchImages() {
         data.images.forEach(image => images.push(image))
         renderImages()
       } else {
-        throw 'no more images'
+        throw new Error('no more images')
       }
     })
 }
 
-function renderImages() {
+function renderImages () {
   imageListElement.innerHTML = images.map(renderImageElement).join('')
 }
 
-function renderImageElement(url) {
+function renderImageElement (id) {
   return `<a href='#'
     class='mb-image ui-shadow'
-    style='background-image: url(images/${url})'>
+    style='background-image: url(image/${id})'>
   </a>`
 }
 
-function scrolledToBottom() {
+function scrolledToBottom () {
   const {scrollTop, scrollHeight} = imageListElement
   const {innerHeight} = window
   return scrollTop > (scrollHeight - innerHeight) - 50
 }
 
-function init() {
-  let fetching = false
+function init () {
+  // let fetching = false
+
   fetchImages()
-  imageListElement.addEventListener('wheel', ev => {
-    if (ev.deltaY > 0 && scrolledToBottom() && !fetching) {
-      console.log('fetching images...')
-      fetching = true
-      fetchImages()
-        .then(() => {
-          console.log('done')
-          fetching = false
-        })
-        .catch(err => {
-          console.log("couldn't fetch:", err)
-        })
-    }
-  }, { passive: true })
+
+  // imageListElement.addEventListener('wheel', ev => {
+  //   if (ev.deltaY > 0 && scrolledToBottom() && !fetching) {
+  //     fetching = true
+  //     fetchImages()
+  //       .then(() => { fetching = false })
+  //       .catch(err => { console.log("couldn't fetch:", err) })
+  //   }
+  // }, { passive: true })
 }
 
 init()
