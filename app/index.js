@@ -1,4 +1,5 @@
 const express = require('express')
+const path = require('path')
 const database = require('./database')
 const api = require('./api')
 
@@ -8,7 +9,7 @@ database.connect().then(db => {
   const app = express()
 
   // app.set('view engine', 'pug')
-  app.use(express.static('static'))
+  app.use(express.static(path.resolve(__dirname, '../static')))
 
   api.init(app, db)
 
