@@ -1,11 +1,9 @@
 {
   "compileOnSave": true,
-  "files": [
-    "app/**/*.ts"
-  ],
+  "include": ["./app"],
   "compilerOptions": {
     "module": "commonjs",
-    "target": "es5",
+    "target": "es6",
     "noImplicitAny": true,
     "alwaysStrict": true,
     "strictNullChecks": true,

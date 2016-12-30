@@ -1,7 +1,8 @@
 import {Express} from 'express'
 import {Db} from 'mongodb'
-import multer from 'multer'
+import multer = require('multer')
 import * as path from 'path'
+import * as fs from 'fs'
 import * as database from './database'
 
 const upload = multer({
@@ -29,8 +30,10 @@ export function init (app: Express, db: Db) {
   app.delete('/tag/:id/:tag', (req, res) => {})
 
   app.post('/upload', upload.single('image'), (req, res) => {
-    const {filename} = req.file
-    const id = filename
+    const id = req.file.filename
+    const extension = path.parse(req.file.originalname).ext
+    const filename = req.file.path + extension
+    fs.rename(req.file.path, filename)
 
     database.addImage(db, id, filename)
       .then(() => console.log(`added image ${id}`))
