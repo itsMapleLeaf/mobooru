@@ -1,0 +1,14 @@
+{
+  "compileOnSave": true,
+  "files": [
+    "app/**/*.ts"
+  ],
+  "compilerOptions": {
+    "module": "commonjs",
+    "target": "es5",
+    "noImplicitAny": true,
+    "alwaysStrict": true,
+    "strictNullChecks": true,
+    "watch": true
+  }
+}

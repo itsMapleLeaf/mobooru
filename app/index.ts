@@ -1,7 +1,8 @@
-const express = require('express')
-const path = require('path')
-const database = require('./database')
-const api = require('./api')
+import express from 'express'
+import * as path from 'path'
+
+import * as database from './database'
+import * as api from './api'
 
 const port = +process.env.PORT || 8080
 

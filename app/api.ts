@@ -1,13 +1,14 @@
-const multer = require('multer')
-const path = require('path')
-const bodyParser = require('body-parser')
-const database = require('./database')
+import {Express} from 'express'
+import {Db} from 'mongodb'
+import multer from 'multer'
+import * as path from 'path'
+import * as database from './database'
 
 const upload = multer({
   dest: path.resolve(__dirname, '../data/images')
 })
 
-function init (app, db) {
+export function init (app: Express, db: Db) {
   app.get('/image/:id', (req, res) => {
     database.getImagePath(db, req.params.id)
       .then(imagePath => res.sendFile(imagePath))
@@ -18,7 +19,7 @@ function init (app, db) {
 
   app.get('/tags/:id', (req, res) => {})
 
-  app.get('/images', bodyParser.json(), (req, res) => {
+  app.get('/images', (req, res) => {
     database.getImages(db)
       .then(images => res.send({ images }))
   })
@@ -31,21 +32,8 @@ function init (app, db) {
     const {filename} = req.file
     const id = filename
 
-    database.addImage(id, filename)
+    database.addImage(db, id, filename)
       .then(() => console.log(`added image ${id}`))
       .catch(err => console.error(err))
   })
-
-  // app.get('/api/images', (req, res) => {
-  //   // res.send({ images: images.slice(0, 3) })
-  // })
-
-  // app.get('/api/images/:previous', (req, res) => {
-  //   // const index = images.indexOf(req.params.previous)
-  //   // const start = index + 1
-  //   // const end = Math.min(index + 4, images.length)
-  //   // res.send({ images: images.slice(start, end) })
-  // })
 }
-
-module.exports = { init }
