@@ -9,6 +9,12 @@ const upload = multer({
   dest: path.resolve(__dirname, '../data/images')
 })
 
+function rename (oldPath: string, newPath: string) {
+  return new Promise((resolve, reject) => {
+    fs.rename(oldPath, newPath, err => err ? reject(err) : resolve())
+  })
+}
+
 export function init (app: Express, db: Db) {
   app.get('/image/:id', (req, res) => {
     database.getImagePath(db, req.params.id)
@@ -33,9 +39,9 @@ export function init (app: Express, db: Db) {
     const id = req.file.filename
     const extension = path.parse(req.file.originalname).ext
     const filename = req.file.path + extension
-    fs.rename(req.file.path, filename)
 
-    database.addImage(db, id, filename)
+    rename(req.file.path, filename)
+      .then(() => database.addImage(db, id, filename))
       .then(() => console.log(`added image ${id}`))
       .catch(err => console.error(err))
   })
