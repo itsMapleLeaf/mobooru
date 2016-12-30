@@ -8,6 +8,8 @@ const port = +process.env.PORT || 8080
 database.connect().then(db => {
   const app = express()
 
+  app.set('views', path.resolve(__dirname, './views'))
+  app.set('view engine', 'pug')
   app.use(express.static(path.resolve(__dirname, './public')))
   app.use(api(db))
 
