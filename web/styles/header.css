@@ -1,0 +1,27 @@
+.mb-header {
+  padding: 0.3em;
+  background-color: white;
+  box-shadow: 0 0.1em 0.2em #aaa;
+  position: fixed;
+  left: 0;
+  right: 0;
+  top: 0;
+  display: flex;
+  align-items: stretch;
+}
+
+.mb-header-item {
+  margin-left: 0.2em;
+  margin-right: 0.2em;
+}
+
+.mb-header-item--stretch {
+  width: 0;
+  flex-grow: 1;
+}
+
+@media (max-width: 480px) {
+  .mb-header-title {
+    display: none;
+  }
+}

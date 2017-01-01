@@ -1,0 +1,18 @@
+.mb-button {
+  display: inline-block;
+  color: #aaa;
+  padding: 0.3em 0.6em;
+  transition: 0.2s;
+}
+
+.mb-button:hover {
+  cursor: pointer;
+}
+
+.mb-button:hover, .mb-button:focus {
+  color: lightskyblue;
+}
+
+.mb-button:active {
+  color: cornflowerblue;
+}

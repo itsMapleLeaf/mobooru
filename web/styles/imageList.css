@@ -1,0 +1,20 @@
+.mb-imageList {
+  padding: 2.5em 0.5em 0.5em;
+  width: 100vw;
+  height: 100vh;
+  overflow-y: auto;
+
+  display: flex;
+  justify-content: center;
+  flex-wrap: wrap;
+}
+
+.mb-imageList-image {
+  display: inline-block;
+  width: 15em;
+  height: 15em;
+  margin: 0.5em;
+  background-size: cover;
+  background-position-x: center;
+  box-shadow: 0 0.1em 0.3em #aaa;
+}

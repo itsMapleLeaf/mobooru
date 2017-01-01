@@ -1,0 +1,10 @@
+.mb-input {
+  border-bottom: 2px solid #ddd;
+  transition: 0.2s border-bottom-color;
+  padding: 0.3em 0.6em;
+  display: inline-block;
+}
+
+.mb-input:hover, .mb-input:focus {
+  border-bottom: 2px solid lightskyblue;
+}
