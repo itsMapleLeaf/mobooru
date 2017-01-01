@@ -27,12 +27,12 @@ input, button, textarea {
   font-size: inherit;
   font-family: inherit;
   color: inherit;
-  width: 0;
-  min-width: 6em;
 }
 
-input:focus,
-button:focus,
-textarea:focus {
+button {
+  width: max-content;
+}
+
+input:focus, button:focus, textarea:focus {
   outline: none;
 }

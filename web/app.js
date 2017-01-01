@@ -1,1 +1,1 @@
-console.log('it works!')
+const header = document.createElement('header')

@@ -2,6 +2,12 @@
 .mb-header {
   padding: 0.3em 0.6em;
   background-color: white;
+  box-shadow: 0 0.1em 0.2em #aaa;
+  position: fixed;
+  left: 0;
+  right: 0;
+  top: 0;
+  display: flex;
 }
 
 @media (max-width: 480px) {
@@ -15,9 +21,11 @@
   transition: 0.2s border-bottom-color;
   margin: 0 0.3em;
   padding: 0em 0.3em;
+  display: inline-block;
+  flex-grow: 1;
 }
 
-.mb-input:hover {
+.mb-header-search:hover {
   border-bottom: 2px solid lightskyblue;
 }
 
@@ -25,6 +33,10 @@
   color: #aaa;
   display: inline-block;
   padding: 0.3em 0.6em;
+}
+
+.mb-button:active {
+  color: lightskyblue;
 }
 
 .mb-image-list {
