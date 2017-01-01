@@ -6,8 +6,10 @@
   "license": "MIT",
   "dependencies": {
     "express": "^4.14.0",
+    "mdi": "^1.7.22",
     "mongodb": "^2.2.16",
     "multer": "^1.2.1",
+    "normalize.css": "^5.0.0",
     "vue": "^2.1.8"
   },
   "scripts": {

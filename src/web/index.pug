@@ -7,6 +7,7 @@ html(lang='en')
 
     title mobooru
 
+    link(rel="stylesheet", href="styles/normalize.css")
     link(rel="stylesheet", href="//cdn.materialdesignicons.com/1.7.22/css/materialdesignicons.min.css")
 
     link(rel="stylesheet", href="styles/base.css")
@@ -16,11 +17,11 @@ html(lang='en')
     //- script(defer, src='scripts/main.js')
 
   body
-    .mb-header.ui-full-width.ui-fixed.ui-shadow.ui-flex-row
-      a(href='/'): h2.mb-title mobooru
-      input.mb-input.ui-flex-grow(placeholder='Search...')
-      a.mb-icon-button(href='#'): i.mdi.mdi-upload
+    .mb-header
+      h2.mb-header-title: a(href='/') mobooru
+      input.mb-header-search(placeholder='Search...')
+      a.mb-button(href='#'): i.mdi.mdi-upload
 
-    .mb-image-list.ui-flex-row.ui-flex-justify-center.ui-flex-wrap
-        //- each src in images
-        //-   a.mb-image.ui-shadow(href='#', style=`background-image: url(images/${src})`)
+    .mb-image-list
+      //- each src in images
+      //-   a.mb-image.ui-shadow(href='#', style=`background-image: url(images/${src})`)
