@@ -7,7 +7,7 @@
 
 /* base element styles */
 :root {
-  font-family: Roboto;
+  font-family: Roboto, Helvetica, Arial, sans-serif;
   font-size: 16pt;
   color: #555;
 }
