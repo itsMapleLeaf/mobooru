@@ -18,26 +18,26 @@ function rename (oldPath: string, newPath: string) {
 export default function (db: Db) {
   const router = Router()
 
-  router.get('/image/:id', (req, res) => {
+  router.get('/api/image/:id', (req, res) => {
     database.getImagePath(db, req.params.id)
       .then(imagePath => res.sendFile(imagePath))
       .catch(error => res.send({ error }))
   })
 
-  router.get('/thumb/:id', (req, res) => {})
+  router.get('/api/thumb/:id', (req, res) => {})
 
-  router.get('/tags/:id', (req, res) => {})
+  router.get('/api/tags/:id', (req, res) => {})
 
-  router.get('/images', (req, res) => {
+  router.get('/api/images', (req, res) => {
     database.getImages(db)
       .then(images => res.send({ images }))
   })
 
-  router.post('/tag/:id/:tag', (req, res) => {})
+  router.post('/api/tag/:id/:tag', (req, res) => {})
 
-  router.delete('/tag/:id/:tag', (req, res) => {})
+  router.delete('/api/tag/:id/:tag', (req, res) => {})
 
-  router.post('/upload', upload.single('image'), (req, res) => {
+  router.post('/api/upload', upload.single('image'), (req, res) => {
     const id = req.file.filename
     const extension = path.parse(req.file.originalname).ext
     const filename = req.file.path + extension
