@@ -6,7 +6,7 @@ import * as fs from 'fs'
 import * as database from './database'
 
 const upload = multer({
-  dest: path.resolve(__dirname, '../data/images')
+  dest: path.resolve(__dirname, '../../data/images')
 })
 
 function rename (oldPath: string, newPath: string) {
