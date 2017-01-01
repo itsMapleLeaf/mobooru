@@ -4,7 +4,13 @@
   background-color: white;
 }
 
-.mb-input {
+@media (max-width: 480px) {
+  .mb-header-title {
+    display: none;
+  }
+}
+
+.mb-header-search {
   border-bottom: 2px solid #ddd;
   transition: 0.2s border-bottom-color;
   margin: 0 0.3em;
@@ -15,10 +21,10 @@
   border-bottom: 2px solid lightskyblue;
 }
 
-.mb-icon-button {
+.mb-button {
   color: #aaa;
   display: inline-block;
-  padding: 0.3em 0.5em;
+  padding: 0.3em 0.6em;
 }
 
 .mb-image-list {
@@ -44,9 +50,3 @@
 .mb-upload-form > form {
 
 }*/
-
-@media (max-width: 480px) {
-  .mb-title {
-    display: none;
-  }
-}

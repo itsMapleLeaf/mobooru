@@ -7,21 +7,15 @@ html(lang='en')
 
     title mobooru
 
-    link(rel="stylesheet", href="styles/normalize.css")
-    link(rel="stylesheet", href="//cdn.materialdesignicons.com/1.7.22/css/materialdesignicons.min.css")
-
-    link(rel="stylesheet", href="styles/base.css")
-    link(rel="stylesheet", href="styles/ui.css")
-    link(rel="stylesheet", href="styles/mobooru.css")
-
-    //- script(defer, src='scripts/main.js')
+    script(defer, src='main.js')
 
   body
-    .mb-header
-      h2.mb-header-title: a(href='/') mobooru
-      input.mb-header-search(placeholder='Search...')
-      a.mb-button(href='#'): i.mdi.mdi-upload
+    main
+    //- .mb-header
+    //-   h2.mb-header-title: a(href='/') mobooru
+    //-   input.mb-header-search(placeholder='Search...')
+    //-   a.mb-button(href='#'): i.mdi.mdi-upload
 
-    .mb-image-list
-      //- each src in images
-      //-   a.mb-image.ui-shadow(href='#', style=`background-image: url(images/${src})`)
+    //- .mb-image-list
+    //-   each src in images
+    //-     a.mb-image.ui-shadow(href='#', style=`background-image: url(images/${src})`)
