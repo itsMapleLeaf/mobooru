@@ -2,6 +2,8 @@ const gulp = require('gulp')
 const pug = require('gulp-pug')
 const ts = require('gulp-typescript')
 const webpack = require('webpack')
+const WebpackDevServer = require('webpack-dev-server')
+const nodemon = require('nodemon')
 const path = require('path')
 
 const tsProject = ts.createProject('tsconfig.json')
@@ -11,7 +13,6 @@ const webpackConfig = {
   output: {
     path: path.resolve(__dirname, 'build/web'),
     filename: 'main.js',
-    publicPath: '/build/web/',
   },
   module: {
     rules: [
@@ -19,7 +20,8 @@ const webpackConfig = {
       { test: /\.vue$/, loader: 'vue-loader' },
       { test: /\.(eot|svg|ttf|woff|woff2)$/, loader: 'file-loader' },
     ]
-  }
+  },
+  devtool: 'source-map'
 }
 
 
@@ -42,13 +44,13 @@ gulp.task('build:web', ['build:web:pug', 'build:web:webpack'])
 gulp.task('build', ['build:server', 'build:web'])
 
 
-gulp.task('watch:server', () => {
+gulp.task('watch:server', ['build:server'], () => {
   gulp.watch('src/server/**/*.ts', ['build:server'])
+  nodemon({ script: 'build/server/index.js' })
 })
 
-gulp.task('watch:web', () => {
+gulp.task('watch:web', done => {
   gulp.watch('src/web/**/*.pug', ['build:web:pug'])
-  gulp.watch('src/web/(components/**/*|styles/**/*|main.js)', ['build:web:webpack'])
 })
 
 gulp.task('watch', ['build', 'watch:server', 'watch:web'])
