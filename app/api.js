@@ -14,7 +14,7 @@ function rename(oldPath, newPath) {
   })
 }
 
-exports.init = function (db) {
+module.exports = function (db) {
   const router = Router()
 
   router.get('/api/image/:id', (req, res) => {

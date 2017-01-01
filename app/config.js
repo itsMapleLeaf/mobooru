@@ -1,12 +1,14 @@
+const {resolve} = require('path')
+
 module.exports = {
   server: {
-    port: +process.env.PORT || 3000,
+    port: +process.env.PORT || 8080,
   },
   db: {
     url: 'mongodb://localhost:27017',
   },
   paths: {
-    web: path.resolve(__dirname, '../web'),
-    data: path.resolve(__dirname, '../data'),
+    web: resolve(__dirname, '../web'),
+    data: resolve(__dirname, '../data'),
   }
 }

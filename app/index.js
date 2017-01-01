@@ -8,9 +8,9 @@ database.connect().then(db => {
   const app = express()
 
   app.use(express.static(config.paths.web))
-  app.use(api.default(db))
+  app.use(api(db))
 
   app.listen(config.server.port, () => {
-    console.log(`Server listening on localhost:${port}`)
+    console.log(`Server listening on localhost:${config.server.port}`)
   })
 })
