@@ -1,7 +1,5 @@
 .mb-imageList {
-  padding: 2.5em 0.5em 0.5em;
-  width: 100vw;
-  height: 100vh;
+  padding: 0.5em;
   overflow-y: auto;
 
   display: flex;
