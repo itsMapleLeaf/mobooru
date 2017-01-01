@@ -6,10 +6,10 @@
 
   function renderImages() {
     imageListElement.innerHTML = ''
-    for (const src of images) {
-      const el = document.importNode(imageTemplate.content, true)
-      imageListElement.appendChild(el)
-    }
+
+    images
+      .map(src => document.importNode(imageTemplate.content, true))
+      .forEach(el => imageListElement.appendChild(el))
   }
 
   renderImages()
