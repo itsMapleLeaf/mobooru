@@ -1,11 +1,9 @@
-const mongodb = require("mongodb")
+const {MongoClient} = require("mongodb")
 const path = require("path")
 const config = require('./config')
 
-const databaseURL = 'mongodb://localhost:27017'
-
 exports.connect = function () {
-  return mongodb.MongoClient.connect(databaseURL)
+  return MongoClient.connect(config.db.url)
 }
 
 exports.getImagePath = function (db, id) {

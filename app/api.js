@@ -38,8 +38,8 @@ exports.init = function (db) {
 
   router.post('/api/upload', upload.single('image'), (req, res) => {
     const id = req.file.filename
-    const extension = path.parse(req.file.originalname).ext
-    const filename = req.file.path + extension
+    const {ext} = path.parse(req.file.originalname)
+    const filename = req.file.path + ext
 
     rename(req.file.path, filename)
       .then(() => database.addImage(db, id, filename))
