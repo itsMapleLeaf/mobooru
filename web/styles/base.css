@@ -36,8 +36,3 @@ button {
 input:focus, button:focus, textarea:focus {
   outline: none;
 }
-
-body {
-  display: flex;
-  flex-direction: column;
-}

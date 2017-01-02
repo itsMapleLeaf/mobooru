@@ -11,9 +11,10 @@
 
     <link rel="stylesheet" href="styles/base.css">
     <link rel="stylesheet" href="styles/button.css">
-    <link rel="stylesheet" href="styles/input.css">
     <link rel="stylesheet" href="styles/header.css">
     <link rel="stylesheet" href="styles/imageList.css">
+    <link rel="stylesheet" href="styles/input.css">
+    <link rel="stylesheet" href="styles/siteContainer.css">
 
     <script defer src="scripts/images.js"></script>
 
@@ -21,13 +22,15 @@
   </head>
 
   <body>
-    <header class="mb-header">
-      <h2 class="mb-header-title mb-header-item">mobooru</h2>
-      <input class="mb-input mb-header-item mb-header-item--stretch" placeholder="Search...">
-      <button class="mb-button mb-header-item"><i class="mdi mdi-magnify"></i></button>
-      <button class="mb-button mb-header-item"><i class="mdi mdi-upload"></i></button>
-    </header>
-    <section class="mb-imageList"></section>
+    <main class="mb-siteContainer">
+      <header class="mb-header">
+        <h2 class="mb-header-title mb-header-item">mobooru</h2>
+        <input class="mb-input mb-header-item mb-header-item--stretch" placeholder="Search...">
+        <button class="mb-button mb-header-item"><i class="mdi mdi-magnify"></i></button>
+        <button class="mb-button mb-header-item"><i class="mdi mdi-upload"></i></button>
+      </header>
+      <section class="mb-imageList"></section>
+    </main>
   </body>
 
   <template id="mb-imageTemplate">
