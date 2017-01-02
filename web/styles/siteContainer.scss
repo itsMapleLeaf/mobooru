@@ -1,7 +1,8 @@
+@import 'mixins';
+
 .mb-siteContainer {
-  position: absolute;
-  left: 0; right: 0;
-  top: 0; bottom: 0;
+  @include fullscreen;
+
   display: flex;
   flex-direction: column;
 }

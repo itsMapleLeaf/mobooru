@@ -1,17 +1,14 @@
+@import 'mixins';
+
 .mb-overlay {
-  position: fixed;
-  left: 0; right: 0;
-  top: 0; bottom: 0;
+  @include fullscreen;
+  @include flex(column);
 
   background-color: rgba(0, 0, 0, 0.5);
 
   opacity: 0;
   visibility: hidden;
   transition: 0.3s;
-
-  display: flex;
-  align-items: center;
-  justify-content: center;
 
   overflow-y: auto;
 }
@@ -32,9 +29,9 @@
 .mb-overlay--visible {
   opacity: 1;
   visibility: visible;
-}
 
-.mb-overlay--visible .mb-overlay-panel {
-  transition-timing-function: ease-out;
-  transform: translateY(0);
+  .mb-overlay-panel {
+    transition-timing-function: ease-out;
+    transform: translateY(0);
+  }
 }

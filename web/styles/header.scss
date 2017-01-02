@@ -1,12 +1,16 @@
+@import 'mixins';
+
 .mb-header {
+  @include flex(row);
+
   padding: 0.3em;
   background-color: white;
   box-shadow: 0 0.1em 0.2em #aaa;
-  display: flex;
-  align-items: center;
+
   position: -webkit-sticky;
   position: sticky;
   top: 0;
+
   height: max-content;
 }
 
@@ -20,8 +24,8 @@
   flex-grow: 1;
 }
 
-@media (max-width: 480px) {
-  .mb-header-title {
+.mb-header-title {
+  @media (max-width: 480px) {
     display: none;
   }
 }
