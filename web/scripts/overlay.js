@@ -1,4 +1,4 @@
-(function() {
+;(function() {
   const overlays = document.querySelectorAll('.mb-overlay')
 
   Array.from(overlays).forEach(overlay => {

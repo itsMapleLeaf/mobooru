@@ -1,4 +1,4 @@
-(function() {
+;(function() {
   const images = Array(10).fill(null)
 
   const imageTemplate = document.querySelector('#mb-imageTemplate')

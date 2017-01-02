@@ -1,4 +1,4 @@
-(function() {
+;(function() {
   const uploadButton = document.querySelector('.mb-uploadButton')
   const uploadOverlay = document.querySelector('.mb-upload')
 
