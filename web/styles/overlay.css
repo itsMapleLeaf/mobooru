@@ -1,0 +1,40 @@
+.mb-overlay {
+  position: fixed;
+  left: 0; right: 0;
+  top: 0; bottom: 0;
+
+  background-color: rgba(0, 0, 0, 0.5);
+
+  opacity: 0;
+  visibility: hidden;
+  transition: 0.3s;
+
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  overflow-y: auto;
+}
+
+.mb-overlay-panel {
+  width: max-content;
+  height: max-content;
+  max-width: calc(100vw - 2em);
+  max-height: calc(100vh - 2em);
+  background-color: white;
+  box-shadow: 0 0.1em 0.3em rgba(0, 0, 0, 0.3);
+  padding: 0.3em 0.6em;
+
+  transition: 0.3s transform ease-in;
+  transform: translateY(-2em);
+}
+
+.mb-overlay--visible {
+  opacity: 1;
+  visibility: visible;
+}
+
+.mb-overlay--visible .mb-overlay-panel {
+  transition-timing-function: ease-out;
+  transform: translateY(0);
+}

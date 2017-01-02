@@ -3,10 +3,11 @@
   background-color: white;
   box-shadow: 0 0.1em 0.2em #aaa;
   display: flex;
-  align-items: stretch;
+  align-items: center;
   position: -webkit-sticky;
   position: sticky;
   top: 0;
+  height: max-content;
 }
 
 .mb-header-item {

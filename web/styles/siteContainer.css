@@ -1,6 +1,16 @@
 .mb-siteContainer {
-  width: 100vh;
-  height: 100vh;
+  position: absolute;
+  left: 0; right: 0;
+  top: 0; bottom: 0;
   display: flex;
   flex-direction: column;
+}
+
+.mb-siteContainer-item {
+  flex-shrink: 0;
+}
+
+.mb-siteContainer-item--stretch {
+  flex-grow: 1;
+  height: 0;
 }

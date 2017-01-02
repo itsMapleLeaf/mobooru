@@ -14,23 +14,37 @@
     <link rel="stylesheet" href="styles/header.css">
     <link rel="stylesheet" href="styles/imageList.css">
     <link rel="stylesheet" href="styles/input.css">
+    <link rel="stylesheet" href="styles/overlay.css">
     <link rel="stylesheet" href="styles/siteContainer.css">
 
     <script defer src="scripts/images.js"></script>
+    <script defer src="scripts/upload.js"></script>
+    <script defer src="scripts/overlay.js"></script>
 
     <title>mobooru</title>
   </head>
 
   <body>
     <main class="mb-siteContainer">
-      <header class="mb-header">
-        <h2 class="mb-header-title mb-header-item">mobooru</h2>
+      <header class="mb-header mb-siteContainer-item">
+        <h2 class="mb-header-title mb-header-item">
+          <a href="/">mobooru</a>
+        </h2>
         <input class="mb-input mb-header-item mb-header-item--stretch" placeholder="Search...">
         <button class="mb-button mb-header-item"><i class="mdi mdi-magnify"></i></button>
-        <button class="mb-button mb-header-item"><i class="mdi mdi-upload"></i></button>
+        <button class="mb-button mb-uploadButton mb-header-item"><i class="mdi mdi-upload"></i></button>
       </header>
-      <section class="mb-imageList"></section>
+      <section class="mb-imageList mb-siteContainer-item mb-siteContainer-item--stretch"></section>
     </main>
+
+    <section class="mb-upload mb-overlay">
+      <div class="mb-overlay-panel">
+        <form class="mb-upload-form">
+          <input type="file" class="mb-upload-input">
+          <button class="mb-button mb-upload-submit">Upload</button>
+        </form>
+      </div>
+    </section>
   </body>
 
   <template id="mb-imageTemplate">
