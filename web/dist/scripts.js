@@ -1,37 +1,37 @@
-;(function() {
-  const images = Array(10).fill(null)
+(function () {
+'use strict';
 
-  const imageTemplate = document.querySelector('#mb-imageTemplate')
-  const imageListElement = document.querySelector('.mb-imageList')
+const images = Array(10).fill(null);
 
-  function renderImages() {
-    imageListElement.innerHTML = ''
+const imageTemplate = document.querySelector('#mb-imageTemplate');
+const imageListElement = document.querySelector('.mb-imageList');
 
-    images
-      .map(src => document.importNode(imageTemplate.content, true))
-      .forEach(el => imageListElement.appendChild(el))
-  }
+function renderImages() {
+  imageListElement.innerHTML = '';
 
-  renderImages()
-})()
+  images
+    .map(src => document.importNode(imageTemplate.content, true))
+    .forEach(el => imageListElement.appendChild(el));
+}
 
-;(function() {
-  const overlays = document.querySelectorAll('.mb-overlay')
+renderImages();
 
-  Array.from(overlays).forEach(overlay => {
-    overlay.addEventListener('click', ev => {
-      if (ev.target === overlay) {
-        overlay.classList.remove('mb-overlay--visible')
-      }
-    })
-  })
-})()
+const overlays = document.querySelectorAll('.mb-overlay');
 
-;(function() {
-  const uploadButton = document.querySelector('.mb-uploadButton')
-  const uploadOverlay = document.querySelector('.mb-upload')
+Array.from(overlays).forEach(overlay => {
+  overlay.addEventListener('click', ev => {
+    if (ev.target === overlay) {
+      overlay.classList.remove('mb-overlay--visible');
+    }
+  });
+});
 
-  uploadButton.addEventListener('click', ev => {
-    uploadOverlay.classList.add('mb-overlay--visible')
-  })
-})()
+const uploadButton = document.querySelector('.mb-uploadButton');
+const uploadOverlay = document.querySelector('.mb-upload');
+
+uploadButton.addEventListener('click', ev => {
+  uploadOverlay.classList.add('mb-overlay--visible');
+});
+
+}());
+//# sourceMappingURL=scripts.js.map

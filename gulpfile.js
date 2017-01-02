@@ -1,6 +1,7 @@
 const gulp = require('gulp')
 const sass = require('gulp-sass')
 const concat = require('gulp-concat')
+const rollup = require('rollup')
 
 const paths = {
   styles: {
@@ -10,8 +11,8 @@ const paths = {
   },
   scripts: {
     src: 'web/scripts/**/*.js',
-    dist: 'web/dist',
-    filename: 'scripts.js',
+    entry: 'web/scripts/main.js',
+    dist: 'web/dist/scripts.js',
   }
 }
 
@@ -23,9 +24,12 @@ gulp.task('build:styles', () =>
 )
 
 gulp.task('build:scripts', () =>
-  gulp.src(paths.scripts.src)
-    .pipe(concat(paths.scripts.filename))
-    .pipe(gulp.dest(paths.scripts.dist))
+  rollup.rollup({ entry: paths.scripts.entry })
+    .then(bundle => bundle.write({
+      dest: paths.scripts.dist,
+      format: 'iife',
+      sourceMap: true,
+    }))
 )
 
 gulp.task('build', ['build:scripts', 'build:styles'])
