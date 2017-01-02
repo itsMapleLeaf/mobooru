@@ -2,6 +2,8 @@ const gulp = require('gulp')
 const sass = require('gulp-sass')
 const concat = require('gulp-concat')
 const rollup = require('rollup')
+const npm = require('rollup-plugin-node-resolve')
+const commonjs = require('rollup-plugin-commonjs')
 
 const paths = {
   styles: {
@@ -24,12 +26,17 @@ gulp.task('build:styles', () =>
 )
 
 gulp.task('build:scripts', () =>
-  rollup.rollup({ entry: paths.scripts.entry })
-    .then(bundle => bundle.write({
-      dest: paths.scripts.dist,
-      format: 'iife',
-      sourceMap: true,
-    }))
+  rollup.rollup({
+    entry: paths.scripts.entry,
+    plugins: [
+      npm(),
+      commonjs(),
+    ],
+  }).then(bundle => bundle.write({
+    dest: paths.scripts.dist,
+    format: 'iife',
+    sourceMap: true,
+  }))
 )
 
 gulp.task('build', ['build:scripts', 'build:styles'])

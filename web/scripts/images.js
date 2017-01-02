@@ -1,14 +1,15 @@
+import $ from 'jquery'
+
 const images = Array(10).fill(null)
 
-const imageTemplate = document.querySelector('#mb-imageTemplate')
-const imageListElement = document.querySelector('.mb-imageList')
+const imageTemplate = $('#mb-imageTemplate')
+const imageListElement = $('.mb-imageList')
 
 function renderImages() {
-  imageListElement.innerHTML = ''
-
-  images
-    .map(src => document.importNode(imageTemplate.content, true))
-    .forEach(el => imageListElement.appendChild(el))
+  imageListElement.html('')
+  for (const src of images) {
+    imageListElement.append(imageTemplate.clone(true))
+  }
 }
 
 renderImages()
