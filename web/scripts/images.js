@@ -6,7 +6,7 @@ const imageListElement = document.querySelector('.mb-imageList')
 function renderImages() {
   imageListElement.innerHTML = ''
   for (const src of images) {
-    const node = document.importNode(imageTemplate.content)
+    const node = document.importNode(imageTemplate.content, true)
     imageListElement.appendChild(node)
   }
 }
