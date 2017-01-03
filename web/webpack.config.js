@@ -1,5 +1,6 @@
 const {resolve} = require('path')
 const BabiliPlugin = require('babili-webpack-plugin')
+const ExtractTextPlugin = require('extract-text-webpack-plugin')
 
 const isProduction = process.env.NODE_ENV === 'production'
 
@@ -13,20 +14,22 @@ const config = {
   module: {
     rules: [
       { test: /\.js$/, loader: 'babel-loader' },
-      { test: /\.css$/, loader: 'style-loader!css-loader' },
-      { test: /\.scss$/, loader: 'style-loader!css-loader!sass-loader' },
+      { test: /\.css$/, loader: ExtractTextPlugin.extract('css-loader') },
+      { test: /\.scss$/, loader: ExtractTextPlugin.extract('css-loader!sass-loader') },
       { test: /\.(ttf|woff2?|eot|svg)$/, loader: 'file-loader' },
     ]
   },
-  plugins: [],
-  devtool: 'source-map',
+  plugins: [
+    new ExtractTextPlugin('styles.css'),
+  ],
   devServer: {
     contentBase: __dirname,
     clientLogLevel: 'error',
     compress: true,
     inline: true,
     open: true,
-  }
+  },
+  devtool: 'source-map',
 }
 
 if (isProduction) {
