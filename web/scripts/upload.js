@@ -1,8 +1,6 @@
-import $ from 'jquery'
+const uploadButton = document.querySelector('.mb-uploadButton')
+const uploadOverlay = document.querySelector('.mb-upload')
 
-const uploadButton = $('.mb-uploadButton')
-const uploadOverlay = $('.mb-upload')
-
-uploadButton.click(ev => {
-  uploadOverlay.addClass('mb-overlay--visible')
+uploadButton.addEventListener('click', event => {
+  uploadOverlay.classList.add('mb-overlay--visible')
 })

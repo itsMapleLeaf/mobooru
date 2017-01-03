@@ -1,12 +1,10 @@
-import $ from 'jquery'
+const overlays = document.querySelectorAll('.mb-overlay')
 
-const overlays = $('.mb-overlay')
-
-overlays.each((i, overlay) => {
-  const $overlay = $(overlay)
-  $overlay.click(ev => {
-    if (ev.target === overlay) {
-      $overlay.removeClass('mb-overlay--visible')
+for (const overlay of overlays) {
+  overlay.addEventListener(event => {
+    if (event.target === overlay) {
+      event.preventDefault()
+      overlay.classList.remove('mb-overlay--visible')
     }
   })
-})
+}
