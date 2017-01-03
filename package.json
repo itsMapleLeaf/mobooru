@@ -14,7 +14,7 @@
   "scripts": {
     "dev:webpack": "webpack --config web/webpack.config.js --watch",
     "dev:nodemon": "nodemon app",
-    "dev:bsync": "browser-sync start --proxy localhost:8080 --files web/**/*",
+    "dev:bsync": "browser-sync start --proxy localhost:8080 --files web/**/* --reload-delay 1000",
     "dev": "run-p dev:*",
     "build:web": "cross-env NODE_ENV=production webpack --config web/webpack.config.js",
     "build": "run-p build:*",
