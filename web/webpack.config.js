@@ -18,7 +18,11 @@ const config = {
     ]
   },
   plugins: [],
-  devtool: 'source-map'
+  devtool: 'source-map',
+  devServer: {
+    // publicPath: '/build/',
+    contentBase: __dirname,
+  }
 }
 
 if (isProduction) {

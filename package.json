@@ -13,6 +13,8 @@
     "normalize.css": "^5.0.0"
   },
   "scripts": {
+    "dev:web": "webpack-dev-server --config web/webpack.config.js --inline --hot --colors --open",
+    "dev": "run-p dev:*",
     "build:web": "cross-env NODE_ENV=production webpack --config web/webpack.config.js",
     "build": "run-p build:*"
   },
