@@ -14,7 +14,7 @@ function rename(oldPath, newPath) {
   })
 }
 
-module.exports = function (db) {
+function api(db) {
   const router = Router()
 
   router.get('/api/image/:id', (req, res) => {
@@ -49,3 +49,5 @@ module.exports = function (db) {
 
   return router
 }
+
+module.exports = api
