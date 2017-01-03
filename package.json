@@ -15,7 +15,8 @@
     "dev:web": "webpack-dev-server --config web/webpack.config.js",
     "dev": "run-p dev:*",
     "build:web": "cross-env NODE_ENV=production webpack --config web/webpack.config.js",
-    "build": "run-p build:*"
+    "build": "run-p build:*",
+    "start": "node app"
   },
   "engines": {
     "node": "6.x.x"
