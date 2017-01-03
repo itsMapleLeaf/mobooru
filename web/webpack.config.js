@@ -8,6 +8,7 @@ const config = {
   output: {
     path: resolve(__dirname, 'build'),
     filename: 'bundle.js',
+    publicPath: '/build/'
   },
   module: {
     rules: [
@@ -20,8 +21,11 @@ const config = {
   plugins: [],
   devtool: 'source-map',
   devServer: {
-    // publicPath: '/build/',
     contentBase: __dirname,
+    clientLogLevel: 'error',
+    compress: true,
+    inline: true,
+    open: true,
   }
 }
 
