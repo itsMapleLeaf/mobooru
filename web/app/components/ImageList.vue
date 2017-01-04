@@ -13,7 +13,7 @@ export default {
     return { images: [] }
   },
   mounted() {
-    window.fetch('/api/images')
+    window.fetch('/api/images?count=50')
       .then(res => res.json())
       .then(res => { this.images = res.images })
   }

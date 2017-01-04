@@ -28,7 +28,9 @@ function api(db) {
   router.get('/api/tags/:id', (req, res) => { })
 
   router.get('/api/images', (req, res) => {
+    const count = +(req.query.count || 50)
     database.getImages(db)
+      .then(images => images.slice(0, count))
       .then(images => res.send({ images }))
   })
 
