@@ -17,7 +17,15 @@ const config = {
       { test: /\.css$/, loader: ExtractTextPlugin.extract('css-loader') },
       { test: /\.scss$/, loader: ExtractTextPlugin.extract('css-loader!sass-loader') },
       { test: /\.(ttf|woff2?|eot|svg)$/, loader: 'file-loader' },
-      { test: /\.vue$/, loader: 'vue-loader' },
+      {
+        test: /\.vue$/,
+        loader: 'vue-loader',
+        options: {
+          loaders: {
+            scss: ExtractTextPlugin.extract('css-loader!sass-loader')
+          }
+        }
+      },
     ]
   },
   plugins: [
