@@ -1,6 +1,22 @@
 <template>
-  <section class="imageList"></section>
+  <section class="imageList">
+    <a href='#' class="imageList-image" v-for="id in images" :style="`background-image: url(/api/image/${id})`">
+    </a>
+  </section>
 </template>
+
+<script>
+export default {
+  data() {
+    return { images: [] }
+  },
+  mounted() {
+    window.fetch('/api/images')
+      .then(res => res.json())
+      .then(res => { this.images = res.images })
+  }
+}
+</script>
 
 <style lang='scss' scoped>
 @import '../styles/mixins';
@@ -12,7 +28,7 @@
   align-content: flex-start;
 }
 
-.image {
+.imageList-image {
   display: inline-block;
   width: 15em;
   height: 15em;

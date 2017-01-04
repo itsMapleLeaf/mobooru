@@ -22,8 +22,9 @@
 .upload-dropzone {
   @include flex;
 
-  width: 12em;
+  // width: 12em;
   height: 10em;
+  padding: 1em;
   // border: 2px dotted #ddd;
   // background: #ddd;
   color: rgb(180, 180, 180);
