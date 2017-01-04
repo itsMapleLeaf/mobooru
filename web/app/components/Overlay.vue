@@ -19,13 +19,14 @@ export default {
 
 .overlay-shade {
   @include fullscreen;
-  @include flex(column);
+  @include flex(column, flex-start);
 
   background-color: rgba(0, 0, 0, 0.5);
 
   opacity: 0;
   visibility: hidden;
   transition: 0.3s;
+  padding: 1em;
 
   overflow-y: auto;
 }
@@ -33,8 +34,8 @@ export default {
 .overlay-panel {
   width: max-content;
   height: max-content;
-  max-width: calc(100vw - 2em);
-  max-height: calc(100vh - 2em);
+  max-width: 100%;
+  // max-height: calc(100vh - 2em);
   background-color: white;
   box-shadow: 0 0.1em 0.3em rgba(0, 0, 0, 0.3);
   padding: 0.3em 0.6em;
