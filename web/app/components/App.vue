@@ -15,20 +15,24 @@
       </site-header>
       <image-list class="container-item container-item--stretch"></image-list>
     </main>
-    <upload-overlay :visible="uploadOverlayVisible" @closed="uploadOverlayVisible = false"></upload-overlay>
+    <overlay :visible="uploadOverlayVisible" @closed="uploadOverlayVisible = false">
+      <upload-form></upload-form>
+    </overlay>
   </div>
 </template>
 
 <script>
 import SiteHeader from './SiteHeader.vue'
 import ImageList from './ImageList.vue'
-import UploadOverlay from './UploadOverlay.vue'
+import Overlay from './Overlay.vue'
+import UploadForm from './UploadForm.vue'
 
 export default {
   components: {
     SiteHeader,
     ImageList,
-    UploadOverlay,
+    Overlay,
+    UploadForm,
   },
   data: () => ({
     uploadOverlayVisible: false
@@ -92,41 +96,5 @@ export default {
 
 .mb-input:hover, .mb-input:focus {
   border-bottom: 2px solid lightskyblue;
-}
-
-.mb-overlay {
-  @include fullscreen;
-  @include flex(column);
-
-  background-color: rgba(0, 0, 0, 0.5);
-
-  opacity: 0;
-  visibility: hidden;
-  transition: 0.3s;
-
-  overflow-y: auto;
-}
-
-.mb-overlay-panel {
-  width: max-content;
-  height: max-content;
-  max-width: calc(100vw - 2em);
-  max-height: calc(100vh - 2em);
-  background-color: white;
-  box-shadow: 0 0.1em 0.3em rgba(0, 0, 0, 0.3);
-  padding: 0.3em 0.6em;
-
-  transition: 0.3s transform ease-in;
-  transform: translateY(-2em);
-}
-
-.mb-overlay--visible {
-  opacity: 1;
-  visibility: visible;
-
-  .mb-overlay-panel {
-    transition-timing-function: ease-out;
-    transform: translateY(0);
-  }
 }
 </style>
