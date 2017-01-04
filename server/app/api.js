@@ -1,9 +1,9 @@
-const {Router} = require('express')
-const multer = require('multer')
-const path = require('path')
-const fs = require('fs')
-const database = require('./database')
-const config = require('./config')
+import {Router} from 'express'
+import * as database from './database'
+import * as fs from 'fs'
+import * as path from 'path'
+import config from './config'
+import multer from 'multer'
 
 const upload = multer({
   dest: path.resolve(config.paths.data, 'temp')
@@ -67,4 +67,4 @@ function api(db) {
   return router
 }
 
-module.exports = api
+export default api

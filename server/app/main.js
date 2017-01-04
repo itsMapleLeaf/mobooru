@@ -1,8 +1,8 @@
-const express = require("express")
-const path = require("path")
-const api = require("./api")
-const database = require("./database")
-const config = require('./config')
+import * as database from "./database"
+import api from "./api"
+import config from './config'
+import express from "express"
+import path from "path"
 
 function init(db) {
   const app = express()

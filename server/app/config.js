@@ -1,6 +1,6 @@
-const {resolve} = require('path')
+import {resolve} from 'path'
 
-module.exports = {
+export default {
   server: {
     port: +process.env.PORT || 8080,
   },
@@ -9,6 +9,6 @@ module.exports = {
   },
   paths: {
     web: resolve(__dirname, '../web'),
-    data: resolve(__dirname, '../data'),
+    data: resolve(__dirname, '../../data'),
   }
 }

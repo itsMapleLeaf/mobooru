@@ -5,6 +5,7 @@
   "description": "a mobile-friendly image browser",
   "license": "MIT",
   "dependencies": {
+    "babel-register": "^6.18.0",
     "express": "^4.14.0",
     "gm": "^1.23.0",
     "mdi": "^1.7.22",
@@ -15,15 +16,15 @@
   },
   "scripts": {
     "dev:webpack": "webpack --config web/webpack.config.js --watch",
-    "dev:nodemon": "nodemon app --watch app",
+    "dev:nodemon": "nodemon -r babel-register server/app/main",
     "dev:bsync": "browser-sync start --proxy localhost:8080 --files web/build/** web/index.html --reload-delay 1000",
     "dev": "run-p dev:*",
     "build:web": "cross-env NODE_ENV=production webpack --config web/webpack.config.js",
     "build": "run-p build:*",
-    "start": "node app"
+    "start": "node -r babel-register server/app/main"
   },
   "engines": {
-    "node": "6.x.x"
+    "node": "6.9.x"
   },
   "devDependencies": {
     "babel-core": "^6.21.0",
