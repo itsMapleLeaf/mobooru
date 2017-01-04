@@ -6,6 +6,7 @@
   "license": "MIT",
   "dependencies": {
     "express": "^4.14.0",
+    "gm": "^1.23.0",
     "mdi": "^1.7.22",
     "mongodb": "^2.2.16",
     "multer": "^1.2.1",

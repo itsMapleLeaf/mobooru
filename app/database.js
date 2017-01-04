@@ -6,27 +6,27 @@ function connect() {
   return MongoClient.connect(config.db.url)
 }
 
-function getImagePath(db, id) {
+function getImage(db, id) {
   return db.collection('images').findOne({ id })
-    .then(result => result || Promise.reject(`image path for id ${id} not found`))
-    .then(info => path.resolve(config.paths.data, 'images', info.filename))
+    .then(res => res || Promise.reject(`image with id "${id}" does not exist`))
+    .then(res => res.imagePath || '')
 }
 
-function getImages(db) {
+function getImageList(db, count = 50) {
   return db.collection('images')
     .find({})
-    .limit(10)
+    .limit(count)
     .toArray()
     .then(images => images.map(img => img.id))
 }
 
-function addImage(db, id, filename) {
-  return db.collection('images').insert({ id, filename })
+function registerImage(db, id, filename) {
+  return db.collection('images').insert({ id, filename, tags: [] })
 }
 
 module.exports = {
   connect,
-  getImagePath,
-  getImages,
-  addImage,
+  getImage,
+  getImageList,
+  registerImage,
 }
