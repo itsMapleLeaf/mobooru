@@ -10,21 +10,6 @@ const upload = multer({
   dest: path.resolve(config.paths.data, 'temp')
 })
 
-function copy(inputFile, outputFile) {
-  return new Promise((resolve, reject) => {
-    fs.createReadStream(inputFile)
-      .pipe(fs.createWriteStream(outputFile))
-      .on('close', resolve)
-      .on('error', reject)
-  })
-}
-
-function remove(path) {
-  return new Promise((resolve, reject) => {
-    fs.unlink(path, resolve)
-  })
-}
-
 function handleError(res) {
   return function (error) {
     console.error(error)
@@ -63,20 +48,9 @@ function api(db) {
   router.post('/api/tags/:name', (req, res) => { })
 
   router.post('/api/upload', upload.single('image'), (req, res) => {
-    const extension = path.parse(req.file.originalname).ext
-    const name = req.file.filename + extension
-
-    const imagePath = path.resolve(config.paths.data, 'images', name)
-    const thumbPath = path.resolve(config.paths.data, 'thumb', name)
-
-    Promise.all([
-      copy(req.file.path, imagePath),
-      copy(req.file.path, thumbPath),
-    ])
-    .then(() => remove(req.file.path))
-    .then(() => images.register(name))
-    .then(() => res.send({ name }))
-    .catch(handleError(res))
+    images.handleUpload(req.file)
+      .then(name => res.send({ name }))
+      .catch(handleError(res))
   })
 
   return router
