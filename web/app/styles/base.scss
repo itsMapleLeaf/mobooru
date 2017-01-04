@@ -8,8 +8,10 @@
 /* base element styles */
 :root {
   font-family: Roboto, Helvetica, Arial, sans-serif;
-  font-size: 16pt;
   color: #555;
+
+  @media (max-width: 400px) { font-size: 14pt; }
+  @media (min-width: 400px) { font-size: 16pt; }
 }
 
 a {
