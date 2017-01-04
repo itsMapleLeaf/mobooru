@@ -10,8 +10,8 @@ function init(db) {
   app.use(express.static(config.paths.web))
   app.use(api(db))
 
-  app.listen(config.server.port, () => {
-    console.log(`Server listening on localhost:${config.server.port}`)
+  app.listen(config.server.port, config.server.host, () => {
+    console.log(`Server listening on ${config.server.host}:${config.server.port}`)
   })
 }
 

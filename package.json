@@ -8,11 +8,8 @@
     "babel-register": "^6.18.0",
     "express": "^4.14.0",
     "gm": "^1.23.0",
-    "mdi": "^1.7.22",
     "mongodb": "^2.2.16",
-    "multer": "^1.2.1",
-    "normalize.css": "^5.0.0",
-    "vue": "^2.1.8"
+    "multer": "^1.2.1"
   },
   "scripts": {
     "dev:webpack": "webpack --config web/webpack.config.js --watch",
@@ -32,6 +29,9 @@
     "babel-preset-babili": "0.0.9",
     "babel-preset-env": "^1.1.4",
     "babili-webpack-plugin": "0.0.7",
+    "mdi": "^1.7.22",
+    "normalize.css": "^5.0.0",
+    "vue": "^2.1.8",
     "browser-sync": "^2.18.5",
     "cross-env": "^3.1.4",
     "css-loader": "^0.26.1",

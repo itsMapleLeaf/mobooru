@@ -2,6 +2,7 @@ import {resolve} from 'path'
 
 export default {
   server: {
+    host: process.env.HOST || 'localhost',
     port: +process.env.PORT || 8080,
   },
   db: {
