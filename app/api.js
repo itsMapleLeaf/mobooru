@@ -32,9 +32,9 @@ function api(db) {
       .then(images => res.send({ images }))
   })
 
-  router.post('/api/tag/:id/:tag', (req, res) => { })
+  router.get('/api/tags/:id', (req, res) => { })
 
-  router.delete('/api/tag/:id/:tag', (req, res) => { })
+  router.post('/api/tags/:id', (req, res) => { })
 
   router.post('/api/upload', upload.single('image'), (req, res) => {
     const id = req.file.filename
