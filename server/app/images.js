@@ -4,7 +4,7 @@ import * as util from './util'
 import config from './config'
 
 export function getImageInfo(name) {
-  return query(db => db.collection('images').findOne({ name })
+  return query(db => db.collection('images').findOne({ name }))
     .then(res => res || Promise.reject(`Error getting ${name}: does not exist`))
 }
 
@@ -40,5 +40,5 @@ export function handleUpload(fileInfo) {
 }
 
 export function register(name) {
-  return query(db => db.collection('images').insert({ name, tags: [] })
+  return query(db => db.collection('images').insert({ name, tags: [] }))
 }
