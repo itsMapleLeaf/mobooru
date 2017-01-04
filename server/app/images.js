@@ -1,21 +1,7 @@
 import {query} from './database'
 import * as path from 'path'
+import * as util from './util'
 import config from './config'
-
-function copy(inputFile, outputFile) {
-  return new Promise((resolve, reject) => {
-    fs.createReadStream(inputFile)
-      .pipe(fs.createWriteStream(outputFile))
-      .on('close', resolve)
-      .on('error', reject)
-  })
-}
-
-function remove(path) {
-  return new Promise((resolve, reject) => {
-    fs.unlink(path, resolve)
-  })
-}
 
 export function getImageInfo(name) {
   return query(db => db.collection('images').findOne({ name })
@@ -45,10 +31,10 @@ export function handleUpload(fileInfo) {
   const thumbPath = path.resolve(config.paths.data, 'thumb', name)
 
   return Promise.all([
-    copy(fileInfo.path, imagePath),
-    copy(fileInfo.path, thumbPath),
+    util.copyFile(fileInfo.path, imagePath),
+    util.copyFile(fileInfo.path, thumbPath),
   ])
-  .then(() => remove(fileInfo.path))
+  .then(() => util.removeFile(fileInfo.path))
   .then(() => register(name))
   .then(() => name)
 }
