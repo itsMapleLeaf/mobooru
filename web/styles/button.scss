@@ -5,14 +5,19 @@
   transition: 0.2s;
 }
 
+.mb-button--primary {
+  background: rgb(52, 152, 219);
+  color: white;
+}
+
 .mb-button:hover {
   cursor: pointer;
 }
 
 .mb-button:hover, .mb-button:focus {
-  color: lightskyblue;
+  color: rgb(41, 128, 185);
 }
 
 .mb-button:active {
-  color: cornflowerblue;
+  color: rgb(41, 128, 185);
 }

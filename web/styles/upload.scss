@@ -1,0 +1,27 @@
+@import 'mixins';
+
+.mb-upload {}
+
+.mb-upload-form {
+  text-align: center;
+}
+
+.mb-upload-input {
+  display: none;
+}
+
+.mb-upload-dropzone {
+  @include flex;
+
+  width: 12em;
+  height: 10em;
+  // border: 2px solid #ddd;
+  // background: #ddd;
+  color: rgb(180, 180, 180);
+
+  h3 {
+    font-weight: 400;
+  }
+
+  margin-bottom: 0.6em;
+}

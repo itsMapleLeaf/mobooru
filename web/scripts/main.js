@@ -8,6 +8,7 @@ import '../styles/imageList.scss'
 import '../styles/input.scss'
 import '../styles/overlay.scss'
 import '../styles/siteContainer.scss'
+import '../styles/upload.scss'
 
 import './images'
 import './overlay'
