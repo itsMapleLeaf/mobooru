@@ -1,7 +1,9 @@
 <template>
-  <section class="imageList">
-    <a href='#' class="imageList-image" v-for="id in images" :style="`background-image: url(/api/image/${id})`">
-    </a>
+  <section class="imageList-container">
+    <section class="imageList-list">
+      <a href='#' class="imageList-image" v-for="id in images" :style="`background-image: url(/api/image/${id})`"></a>
+    </section>
+    <a href='#' class="imageList-loadMore">moar pls!</a>
   </section>
 </template>
 
@@ -21,10 +23,15 @@ export default {
 <style lang='scss' scoped>
 @import '../styles/mixins';
 
-.imageList {
+.imageList-container {
+  @include flex(column, center, stretch);
+}
+
+.imageList-list {
+  @include flex(row, center, flex-start, wrap);
+  flex-grow: 1;
   padding: 0.5em;
   overflow-y: auto;
-  @include flex(row, center, flex-start, wrap);
   align-content: flex-start;
 }
 
@@ -36,5 +43,12 @@ export default {
   background-size: cover;
   background-position-x: center;
   box-shadow: 0 0.1em 0.3em #aaa;
+}
+
+.imageList-loadMore {
+  display: block;
+  text-align: center;
+  padding: 0.75em;
+  background: #ddd;
 }
 </style>
