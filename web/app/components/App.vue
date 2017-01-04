@@ -1,10 +1,10 @@
 <template>
   <div>
     <main class="container">
-      <SiteHeader class="container-item"></SiteHeader>
-      <ImageList class="container-item container-item--stretch"></ImageList>
+      <site-header class="container-item"></site-header>
+      <image-list class="container-item container-item--stretch"></image-list>
     </main>
-    <UploadOverlay></UploadOverlay>
+    <upload-overlay></upload-overlay>
   </div>
 </template>
 
