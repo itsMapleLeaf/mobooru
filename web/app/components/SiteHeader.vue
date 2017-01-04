@@ -1,15 +1,6 @@
 <template>
   <header class="header">
-    <h2 class="header-title header-item">
-      <a href="/">mobooru</a>
-    </h2>
-    <input class="mb-input header-item header-item--stretch" placeholder="Search...">
-    <button class="mb-button header-item">
-      <i class="mdi mdi-magnify"></i>
-    </button>
-    <button class="mb-button header-item">
-      <i class="mdi mdi-upload"></i>
-    </button>
+    <slot></slot>
   </header>
 </template>
 

@@ -1,10 +1,21 @@
 <template>
   <div>
     <main class="container">
-      <site-header class="container-item"></site-header>
+      <site-header class="container-item">
+        <h2 class="header-title header-item">
+          <a href="/">mobooru</a>
+        </h2>
+        <input class="mb-input header-item header-item--stretch" placeholder="Search...">
+        <button class="mb-button header-item">
+          <i class="mdi mdi-magnify"></i>
+        </button>
+        <button class="mb-button header-item" @click="uploadOverlayVisible = true">
+          <i class="mdi mdi-upload"></i>
+        </button>
+      </site-header>
       <image-list class="container-item container-item--stretch"></image-list>
     </main>
-    <upload-overlay></upload-overlay>
+    <upload-overlay :visible="uploadOverlayVisible" @closed="uploadOverlayVisible = false"></upload-overlay>
   </div>
 </template>
 
@@ -18,7 +29,10 @@ export default {
     SiteHeader,
     ImageList,
     UploadOverlay,
-  }
+  },
+  data: () => ({
+    uploadOverlayVisible: false
+  })
 }
 </script>
 

@@ -1,5 +1,5 @@
 <template>
-  <section class="uploadOverlay mb-overlay mb-overlay--visible">
+  <section class="uploadOverlay mb-overlay" :class="{ 'mb-overlay--visible': visible }" @click="$emit('closed')">
     <div class="mb-overlay-panel">
       <form class="uploadOverlay-form">
         <input type="file" class="uploadOverlay-input">
@@ -11,6 +11,14 @@
     </div>
   </section>
 </template>
+
+<script>
+export default {
+  props: {
+    visible: Boolean,
+  }
+}
+</script>
 
 <style lang='scss' scoped>
 @import '../styles/mixins';
