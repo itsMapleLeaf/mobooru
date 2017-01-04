@@ -1,7 +1,5 @@
 import {Router} from 'express'
-import * as database from './database'
 import * as images from './images'
-import * as fs from 'fs'
 import * as path from 'path'
 import config from './config'
 import multer from 'multer'

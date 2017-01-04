@@ -1,8 +1,7 @@
-import * as database from "./database"
-import api from "./api"
+import * as database from './database'
+import api from './api'
 import config from './config'
-import express from "express"
-import path from "path"
+import express from 'express'
 
 function init(db) {
   const app = express()
