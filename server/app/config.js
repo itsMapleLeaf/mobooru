@@ -9,7 +9,7 @@ export default {
     url: 'mongodb://localhost:27017',
   },
   paths: {
-    web: resolve(__dirname, '../web'),
+    web: resolve(__dirname, '../../web'),
     data: resolve(__dirname, '../../data'),
   }
 }

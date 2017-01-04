@@ -12,9 +12,10 @@
     "multer": "^1.2.1"
   },
   "scripts": {
-    "dev:webpack": "webpack --config web/webpack.config.js --watch",
+    "dev:webpack": "cross-env NODE_ENV=development webpack --config web/webpack.config.js --watch",
     "dev:nodemon": "nodemon -r babel-register server/app/main",
     "dev:bsync": "browser-sync start --proxy localhost:8080 --files web/build/** web/index.html --reload-delay 1000",
+    "dev:db": "mongod --dbpath ./data/db",
     "dev": "run-p dev:*",
     "build:web": "cross-env NODE_ENV=production webpack --config web/webpack.config.js",
     "build": "run-p build:*",
