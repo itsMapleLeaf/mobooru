@@ -10,12 +10,12 @@ export function getImageInfo(name) {
 
 export function getImagePath(name) {
   return getImageInfo(name)
-    .then(res => resolve(config.paths.data, 'images', res.name))
+    .then(res => path.resolve(config.paths.data, 'images', res.name))
 }
 
 export function getThumbPath(name) {
   return getImageInfo(name)
-    .then(res => resolve(config.paths.data, 'thumb', res.name))
+    .then(res => path.resolve(config.paths.data, 'thumb', res.name))
 }
 
 export function list(count = 50) {
