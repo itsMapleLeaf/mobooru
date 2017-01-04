@@ -5,7 +5,7 @@ const ExtractTextPlugin = require('extract-text-webpack-plugin')
 const isProduction = process.env.NODE_ENV === 'production'
 
 const config = {
-  entry: resolve(__dirname, 'scripts/main.js'),
+  entry: resolve(__dirname, 'app/main.js'),
   output: {
     path: resolve(__dirname, 'build'),
     filename: 'bundle.js',
@@ -17,6 +17,7 @@ const config = {
       { test: /\.css$/, loader: ExtractTextPlugin.extract('css-loader') },
       { test: /\.scss$/, loader: ExtractTextPlugin.extract('css-loader!sass-loader') },
       { test: /\.(ttf|woff2?|eot|svg)$/, loader: 'file-loader' },
+      { test: /\.vue$/, loader: 'vue-loader' },
     ]
   },
   plugins: [
