@@ -1,6 +1,6 @@
 <template>
-  <div>
-    <main class="container">
+  <main>
+    <section class="container">
       <site-header class="container-item">
         <h2 class="header-title header-item">
           <a href="/">mobooru</a>
@@ -14,11 +14,11 @@
         </button>
       </site-header>
       <image-list class="container-item container-item--stretch"></image-list>
-    </main>
+    </section>
     <overlay :visible="uploadOverlayVisible" @closed="uploadOverlayVisible = false">
       <upload-form></upload-form>
     </overlay>
-  </div>
+  </main>
 </template>
 
 <script>
