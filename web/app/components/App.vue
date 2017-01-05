@@ -18,12 +18,16 @@
         </image-thumbnail>
       </image-list>
     </section>
-    <overlay :visible="currentOverlay === 'imagePreview'" @closed="overlays.pop()">
-      <img class="previewedImage" :src="`/api/image/${currentImage}`" @click="overlays.pop()">
-    </overlay>
-    <overlay :visible="currentOverlay === 'upload'" @closed="overlays.pop()">
-      <upload-form></upload-form>
-    </overlay>
+    <transition name="fade">
+      <overlay v-if="currentOverlay === 'imagePreview'" @close="overlays.pop()">
+        <img class="previewedImage" :src="`/api/image/${currentImage}`" @click="overlays.pop()">
+      </overlay>
+    </transition>
+    <transition name="fade">
+      <overlay v-if="currentOverlay === 'upload'" @close="overlays.pop()">
+        <upload-form></upload-form>
+      </overlay>
+    </transition>
   </main>
 </template>
 

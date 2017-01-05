@@ -17,10 +17,6 @@ $primary-alt: rgb(41, 128, 185);
   &:focus {
     color: $primary;
   }
-
-  &:active {
-    color: $primary-alt;
-  }
 }
 
 .mb-button--primary {

@@ -1,7 +1,10 @@
 <template>
   <form class="upload-form">
     <div class="upload-dropzone" @dragenter.prevent @dragleave.prevent @dragover.prevent="handleDragOver" @drop.prevent="handleDrop">
-      <h3 v-if="!currentImage">Drop files here or click to upload.</h3>
+      <template v-if="!currentImage">
+        <h1><i class="mdi mdi-upload"></i></h1>
+        <h3>Drop files here or click to upload.</h3>
+      </template>
       <img v-else class="upload-preview-image" :src="currentImage.src">
     </div>
     <input type="file" class="upload-input">
@@ -69,11 +72,7 @@ export default {
 .upload-dropzone {
   @include flex(column);
 
-  // width: 12em;
   min-height: 10em;
-  // padding: 1em;
-  // border: 2px dotted #ddd;
-  // background: #ddd;
   color: rgb(180, 180, 180);
 
   h3 {
