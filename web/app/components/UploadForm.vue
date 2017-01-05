@@ -1,13 +1,11 @@
 <template>
   <form class="upload-form">
     <div class="upload-dropzone" @dragenter.prevent @dragleave.prevent @dragover.prevent="handleDragOver" @drop.prevent="handleDrop">
-      <h3 v-if="images.length < 1">Drop files here or click to upload.</h3>
-      <template v-else>
-        <img class="upload-preview-image" v-for="src in images" :src="src">
-      </template>
+      <h3 v-if="!currentImage">Drop files here or click to upload.</h3>
+      <img v-else class="upload-preview-image" :src="currentImage.src">
     </div>
     <input type="file" class="upload-input">
-    <button class="mb-button mb-button--primary" @click.prevent>Upload</button>
+    <button class="mb-button mb-button--primary" @click.prevent="upload">Upload</button>
   </form>
 </template>
 
@@ -28,7 +26,7 @@ function readImageData(file) {
 export default {
   data() {
     return {
-      images: []
+      currentImage: null
     }
   },
   methods: {
@@ -36,13 +34,21 @@ export default {
       ev.dataTransfer.dropEffect = 'copy'
     },
     handleDrop(ev) {
-      for (const file of ev.dataTransfer.files) {
-        if (isImage(file)) {
-          readImageData(file)
-            .then(src => this.images.push(src))
-            .catch(err => console.error(err))
-        }
+      const file = ev.dataTransfer.files[0]
+      if (isImage(file)) {
+        readImageData(file)
+          .then(src => { this.currentImage = {file, src} })
+          .catch(err => console.error(err))
       }
+    },
+    upload() {
+      const body = new window.FormData()
+      body.append('image', this.currentImage.file)
+
+      window.fetch('/api/upload', { method: 'POST', body })
+        .then(res => res.json())
+        .then(data => data.error ? Promise.reject(data.error) : console.log(data))
+        .catch(err => console.error(err))
     }
   }
 }
