@@ -5,7 +5,7 @@
       <img v-else class="upload-preview-image" :src="currentImage.src">
     </div>
     <input type="file" class="upload-input">
-    <button class="mb-button mb-button--primary" @click.prevent="upload">Upload</button>
+    <button v-if="currentImage" class="upload-submit mb-button mb-button--primary" @click.prevent="upload">Upload</button>
   </form>
 </template>
 
@@ -79,12 +79,14 @@ export default {
   h3 {
     font-weight: 400;
   }
-
-  margin-bottom: 0.6em;
 }
 
 .upload-preview-image {
   width: 100%;
-  margin: 0.5em;
+  max-width: 20em;
+}
+
+.upload-submit {
+  margin-top: 1em;
 }
 </style>
