@@ -57,8 +57,8 @@ export default {
 
       window.fetch('/api/upload', { method: 'POST', body })
         .then(res => res.json())
-        .then(data => data.error ? Promise.reject(data.error) : console.log(data))
-        .then(data => this.$emit('upload-success'))
+        .then(data => data.error ? Promise.reject(data.error) : data)
+        .then(data => this.$emit('upload-success', data.name))
         .catch(err => console.error(err))
     }
   }

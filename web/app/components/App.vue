@@ -25,7 +25,7 @@
     </transition>
     <transition name="fade">
       <overlay v-if="currentOverlay === 'upload'" @close="overlays.pop()">
-        <upload-form @upload-success="overlays.pop()"></upload-form>
+        <upload-form @upload-success="handleUploadSuccess"></upload-form>
       </overlay>
     </transition>
   </main>
@@ -66,6 +66,11 @@ export default {
   methods: {
     displayImage(id) {
       this.currentImage = id
+      this.overlays.push('imagePreview')
+    },
+    handleUploadSuccess(image) {
+      this.currentImage = image
+      this.overlays.pop()
       this.overlays.push('imagePreview')
     }
   }
