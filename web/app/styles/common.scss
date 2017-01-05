@@ -1,27 +1,34 @@
 @import 'mixins';
 
+$primary: rgb(90, 177, 232);
+$primary-alt: rgb(41, 128, 185);
+
 .mb-button {
   display: inline-block;
   color: #aaa;
   padding: 0.3em 0.6em;
   transition: 0.2s;
+
+  &:hover {
+    cursor: pointer;
+    color: $primary;
+  }
+
+  &:focus {
+    color: $primary;
+  }
+
+  &:active {
+    color: $primary-alt;
+  }
 }
 
 .mb-button--primary {
-  background: rgb(52, 152, 219);
-  color: white;
-}
+  background-color: $primary;
+  &:hover { background-color: $primary-alt }
+  &:focus { background-color: $primary-alt }
 
-.mb-button:hover {
-  cursor: pointer;
-}
-
-.mb-button:hover, .mb-button:focus {
-  color: rgb(41, 128, 185);
-}
-
-.mb-button:active {
-  color: rgb(41, 128, 185);
+  &, &:hover, &:focus, &:active { color: white }
 }
 
 .mb-input {

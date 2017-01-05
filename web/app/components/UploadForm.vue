@@ -59,6 +59,7 @@ export default {
 
 .upload-form {
   text-align: center;
+  padding: 1em;
 }
 
 .upload-input {

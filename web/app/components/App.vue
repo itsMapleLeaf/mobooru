@@ -18,11 +18,11 @@
         </image-thumbnail>
       </image-list>
     </section>
-    <overlay :visible="currentOverlay === 'upload'" @closed="overlays.pop()">
-      <upload-form></upload-form>
-    </overlay>
     <overlay :visible="currentOverlay === 'imagePreview'" @closed="overlays.pop()">
       <img class="previewedImage" :src="`/api/image/${currentImage}`" @click="overlays.pop()">
+    </overlay>
+    <overlay :visible="currentOverlay === 'upload'" @closed="overlays.pop()">
+      <upload-form></upload-form>
     </overlay>
   </main>
 </template>
@@ -89,6 +89,7 @@ export default {
 }
 
 .previewedImage {
+  display: block;
   max-width: 100%;
 }
 </style>
