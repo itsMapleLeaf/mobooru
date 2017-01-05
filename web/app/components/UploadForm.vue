@@ -1,13 +1,15 @@
 <template>
   <form class="upload-form">
-    <div class="upload-dropzone" @dragenter.prevent @dragleave.prevent @dragover.prevent="handleDragOver" @drop.prevent="handleDrop">
+    <a href="#" class="upload-dropzone" @click.prevent="openFileMenu" @dragover.prevent="handleDragOver" @drop.prevent="handleDrop" @dragenter.prevent @dragleave.prevent>
       <template v-if="!currentImage">
         <h1><i class="mdi mdi-upload"></i></h1>
         <h3>Drop files here or click to upload.</h3>
       </template>
-      <img v-else class="upload-preview-image" :src="currentImage.src">
-    </div>
-    <input type="file" class="upload-input">
+      <transition v-else name="fade">
+        <img class="upload-preview-image" :src="currentImage.src">
+      </transition>
+    </a>
+    <input type="file" ref="uploadInput" hidden @change="setImage($event.target.files[0])">
     <button v-if="currentImage" class="upload-submit mb-button mb-button--primary" @click.prevent="upload">Upload</button>
   </form>
 </template>
@@ -33,11 +35,16 @@ export default {
     }
   },
   methods: {
+    openFileMenu() {
+      this.$refs.uploadInput.click()
+    },
     handleDragOver(ev) {
       ev.dataTransfer.dropEffect = 'copy'
     },
     handleDrop(ev) {
-      const file = ev.dataTransfer.files[0]
+      this.setImage(ev.dataTransfer.files[0])
+    },
+    setImage(file) {
       if (isImage(file)) {
         readImageData(file)
           .then(src => { this.currentImage = {file, src} })
@@ -51,6 +58,7 @@ export default {
       window.fetch('/api/upload', { method: 'POST', body })
         .then(res => res.json())
         .then(data => data.error ? Promise.reject(data.error) : console.log(data))
+        .then(data => this.$emit('upload-success'))
         .catch(err => console.error(err))
     }
   }
@@ -63,10 +71,6 @@ export default {
 .upload-form {
   text-align: center;
   padding: 1em;
-}
-
-.upload-input {
-  display: none;
 }
 
 .upload-dropzone {
