@@ -9,7 +9,6 @@ const config = {
   output: {
     path: resolve(__dirname, 'build'),
     filename: 'bundle.js',
-    publicPath: '/build/'
   },
   module: {
     rules: [
@@ -31,13 +30,6 @@ const config = {
   plugins: [
     new ExtractTextPlugin('styles.css'),
   ],
-  devServer: {
-    contentBase: __dirname,
-    clientLogLevel: 'error',
-    compress: true,
-    inline: true,
-    open: true,
-  },
   devtool: 'source-map',
 }
 
