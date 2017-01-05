@@ -38,7 +38,7 @@ export default {
   // max-height: calc(100vh - 2em);
   background-color: white;
   box-shadow: 0 0.1em 0.3em rgba(0, 0, 0, 0.3);
-  padding: 0.3em 0.6em;
+  padding: 0.6em 0.6em;
 
   transition: 0.3s transform ease-in;
   transform: translateY(-2em);
