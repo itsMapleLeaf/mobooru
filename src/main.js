@@ -21,11 +21,9 @@ const router = new VueRouter({
   ]
 })
 
-const options = {
+/* eslint no-new: off */
+new Vue({
   el: 'main',
   render: h => h(Index),
   router,
-}
-
-/* eslint no-new: off */
-new Vue(options)
+})
