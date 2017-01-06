@@ -24,19 +24,13 @@
 </template>
 
 <script>
-import ImageList from '../components/ImageList.vue'
-import ImageThumbnail from '../components/ImageThumbnail.vue'
-import Overlay from '../components/Overlay.vue'
-import SiteHeader from '../components/SiteHeader.vue'
-import UploadForm from '../components/UploadForm.vue'
-
 export default {
   components: {
-    ImageList,
-    ImageThumbnail,
-    Overlay,
-    SiteHeader,
-    UploadForm,
+    ImageList: require('../components/ImageList.vue'),
+    ImageThumbnail: require('../components/ImageThumbnail.vue'),
+    Overlay: require('../components/Overlay.vue'),
+    SiteHeader: require('../components/SiteHeader.vue'),
+    UploadForm: require('../components/UploadForm.vue'),
   },
   data() {
     return {

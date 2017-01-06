@@ -5,13 +5,10 @@
 </template>
 
 <script>
-import Overlay from '../components/Overlay.vue'
-import UploadForm from '../components/UploadForm.vue'
-
 export default {
   components: {
-    Overlay,
-    UploadForm,
+    Overlay: require('../components/Overlay.vue'),
+    UploadForm: require('../components/UploadForm.vue'),
   }
 }
 </script>
