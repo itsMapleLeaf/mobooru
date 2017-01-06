@@ -1,6 +1,9 @@
 <template>
   <overlay @close="$router.push('/')">
-    <upload-form @upload-success="$router.push('/')"></upload-form>
+    <upload-form
+      upload-endpoint="/api/upload"
+      @upload-success="$router.push('/')">
+    </upload-form>
   </overlay>
 </template>
 

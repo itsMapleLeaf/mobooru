@@ -29,6 +29,9 @@ function readImageData(file) {
 }
 
 export default {
+  props: {
+    uploadEndpoint: String,
+  },
   data() {
     return {
       currentImage: null
@@ -55,7 +58,7 @@ export default {
       const body = new window.FormData()
       body.append('image', this.currentImage.file)
 
-      window.fetch('/api/upload', { method: 'POST', body })
+      window.fetch(this.uploadEndpoint, { method: 'POST', body })
         .then(res => res.json())
         .then(data => data.error ? Promise.reject(data.error) : data)
         .then(data => this.$emit('upload-success', data.name))
