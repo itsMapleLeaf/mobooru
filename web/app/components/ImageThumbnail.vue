@@ -1,5 +1,5 @@
 <template>
-  <a href='#' class="thumbnail" :style="`background-image: url(/api/thumb/${id})`"></a>
+  <a href='#' class="thumbnail" :style="`background-image: url(/api/image/${id}/thumb)`"></a>
 </template>
 
 <script>

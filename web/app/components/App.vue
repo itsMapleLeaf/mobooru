@@ -20,7 +20,7 @@
     </section>
     <Overlay v-for="overlay in overlays" @close="overlays.pop()">
       <template v-if="overlay.name === 'imagePreview'">
-        <img class="previewedImage" :src="`/api/image/${overlay.image}`" @click="overlays.pop()">
+        <img class="previewedImage" :src="`/api/image/${overlay.image}/full`" @click="overlays.pop()">
       </template>
       <template v-if="overlay.name === 'upload'">
         <UploadForm @upload-success="handleUploadSuccess"></UploadForm>
@@ -68,7 +68,7 @@ export default {
       this.displayImage(image)
     },
     fetchImages() {
-      window.fetch('/api/images?count=50')
+      window.fetch('/api/list?count=50')
         .then(res => res.json())
         .then(res => { this.images = res.images })
     }
