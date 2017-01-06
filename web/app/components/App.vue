@@ -9,7 +9,7 @@
         <button class="mb-button header-item">
           <i class="mdi mdi-magnify"></i>
         </button>
-        <button class="mb-button header-item" @click="overlays.push('upload')">
+        <button class="mb-button header-item" @click="overlays.push({ name: 'upload' })">
           <i class="mdi mdi-upload"></i>
         </button>
       </SiteHeader>
@@ -18,16 +18,14 @@
         </ImageThumbnail>
       </ImageList>
     </section>
-    <transition name="fade">
-      <Overlay v-if="currentOverlay === 'imagePreview'" @close="overlays.pop()">
-        <img class="previewedImage" :src="`/api/image/${currentImage}`" @click="overlays.pop()">
-      </Overlay>
-    </transition>
-    <transition name="fade">
-      <Overlay v-if="currentOverlay === 'upload'" @close="overlays.pop()">
-        <UploadForm @upload-success="handleUploadSuccess"></UploadForm>
-      </Overlay>
-    </transition>
+    <Overlay v-for="overlay in overlays" @close="overlays.pop()">
+      <template v-if="overlay.name === 'imagePreview'">
+        <img class="previewedImage" :src="`/api/image/${overlay.image}`" @click="overlays.pop()">
+      </template>
+      <template v-if="overlay.name === 'upload'">
+        <UploadForm v-if="overlay.name === 'upload'" @upload-success="handleUploadSuccess"></UploadForm>
+      </template>
+    </Overlay>
   </main>
 </template>
 
@@ -62,14 +60,12 @@ export default {
     }
   },
   methods: {
-    displayImage(id) {
-      this.currentImage = id
-      this.overlays.push('imagePreview')
+    displayImage(image) {
+      this.overlays.push({ name: 'imagePreview', image })
     },
     handleUploadSuccess(image) {
-      this.currentImage = image
       this.overlays.pop()
-      this.overlays.push('imagePreview')
+      this.displayImage(image)
     },
     fetchImages() {
       window.fetch('/api/images?count=50')

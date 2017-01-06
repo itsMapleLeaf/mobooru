@@ -1,12 +1,14 @@
 <template>
-  <section class="overlay-shade" @click.self="$emit('close')">
-    <div class="overlay-panel">
-      <slot></slot>
-    </div>
-  </section>
+  <transition name="fade" appear>
+    <section class="overlay-shade" @click.self="$emit('close')">
+      <div class="overlay-panel">
+        <slot></slot>
+      </div>
+    </section>
+  </transition>
 </template>
 
-<style lang='scss' scoped>
+<style lang="scss" scoped>
 @import "../styles/mixins";
 
 .overlay-shade {
