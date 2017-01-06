@@ -24,18 +24,5 @@
   max-width: 100%;
   background-color: white;
   box-shadow: 0 0.1em 0.3em rgba(0, 0, 0, 0.3);
-
-  // transition: 0.3s transform ease-in;
-  // transform: translateY(-2em);
 }
-
-// .overlay-shade--visible {
-//   opacity: 1;
-//   visibility: visible;
-//
-//   .overlay-panel {
-//     transition-timing-function: ease-out;
-//     transform: translateY(0);
-//   }
-// }
 </style>
