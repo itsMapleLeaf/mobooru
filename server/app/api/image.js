@@ -4,7 +4,7 @@ import * as image from '../models/image'
 
 const router = Router()
 
-router.get('/api/image/:name/full', (req, res) => {
+router.get('/api/image/:name', (req, res) => {
   image.getImagePath(req.params.name)
     .then(path => res.sendFile(path))
     .catch(handleAPIError(res))

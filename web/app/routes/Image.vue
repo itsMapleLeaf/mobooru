@@ -1,6 +1,6 @@
 <template>
   <overlay @close="$router.push('/')">
-    <img :src="`/api/image/${$route.params.image}/full`" @click="$router.push('/')">
+    <img :src="`/api/image/${$route.params.image}`" @click="$router.push('/')">
   </overlay>
 </template>
 
