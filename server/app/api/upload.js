@@ -1,6 +1,6 @@
 import {handleAPIError} from '../util/express'
 import {Router} from 'express'
-import * as images from '../models/image'
+import * as image from '../models/image'
 import * as path from 'path'
 import config from '../config'
 import multer from 'multer'
@@ -12,7 +12,7 @@ const upload = multer({
 const router = Router()
 
 router.post('/api/upload', upload.single('image'), (req, res) => {
-  images.handleUpload(req.file)
+  image.handleUpload(req.file)
     .then(name => res.send({ name }))
     .catch(handleAPIError(res))
 })

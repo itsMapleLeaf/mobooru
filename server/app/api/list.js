@@ -1,6 +1,6 @@
 import {handleAPIError} from '../util/express'
 import {Router} from 'express'
-import * as images from '../models/image'
+import * as image from '../models/image'
 
 const router = Router()
 
@@ -9,7 +9,7 @@ router.get('/api/list', (req, res) => {
   if (isNaN(count)) {
     res.send({ error: 'Missing required parameter "count"' })
   } else {
-    images.list(count)
+    image.list(count)
       .then(images => res.send({ images }))
       .catch(handleAPIError(res))
   }
