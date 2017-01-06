@@ -23,7 +23,7 @@
         <img class="previewedImage" :src="`/api/image/${overlay.image}`" @click="overlays.pop()">
       </template>
       <template v-if="overlay.name === 'upload'">
-        <UploadForm v-if="overlay.name === 'upload'" @upload-success="handleUploadSuccess"></UploadForm>
+        <UploadForm @upload-success="handleUploadSuccess"></UploadForm>
       </template>
     </Overlay>
   </main>
