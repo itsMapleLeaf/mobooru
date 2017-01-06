@@ -30,11 +30,11 @@
 </template>
 
 <script>
-import ImageList from './ImageList.vue'
-import ImageThumbnail from './ImageThumbnail.vue'
-import Overlay from './Overlay.vue'
-import SiteHeader from './SiteHeader.vue'
-import UploadForm from './UploadForm.vue'
+import ImageList from '../components/ImageList.vue'
+import ImageThumbnail from '../components/ImageThumbnail.vue'
+import Overlay from '../components/Overlay.vue'
+import SiteHeader from '../components/SiteHeader.vue'
+import UploadForm from '../components/UploadForm.vue'
 
 export default {
   components: {
