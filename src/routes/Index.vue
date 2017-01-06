@@ -14,9 +14,9 @@
         </router-link>
       </SiteHeader>
       <ImageList class="container-item container-item--stretch">
-        <router-link v-for="image in images" :to="'/image/' + image">
+        <!-- <router-link v-for="image in images" :to="'/image/' + image">
           <ImageThumbnail :id="image"></ImageThumbnail>
-        </router-link>
+        </router-link> -->
       </ImageList>
     </section>
     <router-view></router-view>
@@ -38,7 +38,7 @@ export default {
     }
   },
   mounted() {
-    this.fetchImages()
+    // this.fetchImages()
   },
   methods: {
     fetchImages() {

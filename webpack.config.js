@@ -9,6 +9,7 @@ const config = {
   output: {
     path: resolve(__dirname, 'build'),
     filename: 'bundle.js',
+    publicPath: '/build/'
   },
   module: {
     rules: [
