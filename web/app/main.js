@@ -8,18 +8,22 @@ import './styles/transitions.scss'
 import Vue from 'vue'
 import VueRouter from 'vue-router'
 import Index from './routes/Index.vue'
+import Upload from './routes/Upload.vue'
+import Image from './routes/Image.vue'
 
 Vue.use(VueRouter)
 
 const router = new VueRouter({
   routes: [
-    { path: '*', component: Index },
+    // { path: '/', component: Index },
+    { path: '/upload', component: Upload },
+    { path: '/image/:image', component: Image },
   ]
 })
 
 const options = {
   el: 'main',
-  render: h => h('router-view'),
+  render: h => h(Index),
   router,
 }
 

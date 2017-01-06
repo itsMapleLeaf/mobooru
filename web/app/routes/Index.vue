@@ -3,29 +3,23 @@
     <section class="container">
       <SiteHeader class="container-item">
         <h2 class="header-title header-item">
-          <a href="/">mobooru</a>
+          <router-link to="/">mobooru</router-link>
         </h2>
         <input class="mb-input header-item header-item--stretch" placeholder="Search...">
         <button class="mb-button header-item">
           <i class="mdi mdi-magnify"></i>
         </button>
-        <button class="mb-button header-item" @click="overlays.push({ name: 'upload' })">
+        <router-link to="/upload" class="mb-button header-item">
           <i class="mdi mdi-upload"></i>
-        </button>
+        </router-link>
       </SiteHeader>
       <ImageList class="container-item container-item--stretch">
-        <ImageThumbnail v-for="id in images" :id="id" @click.native.prevent="displayImage(id)">
-        </ImageThumbnail>
+        <router-link v-for="image in images" :to="'/image/' + image">
+          <ImageThumbnail :id="image"></ImageThumbnail>
+        </router-link>
       </ImageList>
     </section>
-    <Overlay v-for="overlay in overlays" @close="overlays.pop()">
-      <template v-if="overlay.name === 'imagePreview'">
-        <img class="previewedImage" :src="`/api/image/${overlay.image}/full`" @click="overlays.pop()">
-      </template>
-      <template v-if="overlay.name === 'upload'">
-        <UploadForm @upload-success="handleUploadSuccess"></UploadForm>
-      </template>
-    </Overlay>
+    <router-view></router-view>
   </main>
 </template>
 
@@ -47,26 +41,12 @@ export default {
   data() {
     return {
       images: [],
-      overlays: [],
-      currentImage: '',
     }
   },
   mounted() {
     this.fetchImages()
   },
-  computed: {
-    currentOverlay() {
-      return this.overlays[this.overlays.length - 1]
-    }
-  },
   methods: {
-    displayImage(image) {
-      this.overlays.push({ name: 'imagePreview', image })
-    },
-    handleUploadSuccess(image) {
-      this.overlays.pop()
-      this.displayImage(image)
-    },
     fetchImages() {
       window.fetch('/api/list?count=50')
         .then(res => res.json())
@@ -93,10 +73,5 @@ export default {
 .container-item--stretch {
   flex-grow: 1;
   height: 0;
-}
-
-.previewedImage {
-  display: block;
-  max-width: 100%;
 }
 </style>
