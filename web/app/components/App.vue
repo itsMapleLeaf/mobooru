@@ -1,7 +1,7 @@
 <template>
   <main>
     <section class="container">
-      <site-header class="container-item">
+      <SiteHeader class="container-item">
         <h2 class="header-title header-item">
           <a href="/">mobooru</a>
         </h2>
@@ -12,21 +12,21 @@
         <button class="mb-button header-item" @click="overlays.push('upload')">
           <i class="mdi mdi-upload"></i>
         </button>
-      </site-header>
-      <image-list class="container-item container-item--stretch">
-        <image-thumbnail v-for="id in images" :id="id" @click.native.prevent="displayImage(id)">
-        </image-thumbnail>
-      </image-list>
+      </SiteHeader>
+      <ImageList class="container-item container-item--stretch">
+        <ImageThumbnail v-for="id in images" :id="id" @click.native.prevent="displayImage(id)">
+        </ImageThumbnail>
+      </ImageList>
     </section>
     <transition name="fade">
-      <overlay v-if="currentOverlay === 'imagePreview'" @close="overlays.pop()">
+      <Overlay v-if="currentOverlay === 'imagePreview'" @close="overlays.pop()">
         <img class="previewedImage" :src="`/api/image/${currentImage}`" @click="overlays.pop()">
-      </overlay>
+      </Overlay>
     </transition>
     <transition name="fade">
-      <overlay v-if="currentOverlay === 'upload'" @close="overlays.pop()">
-        <upload-form @upload-success="handleUploadSuccess"></upload-form>
-      </overlay>
+      <Overlay v-if="currentOverlay === 'upload'" @close="overlays.pop()">
+        <UploadForm @upload-success="handleUploadSuccess"></UploadForm>
+      </Overlay>
     </transition>
   </main>
 </template>
@@ -54,9 +54,7 @@ export default {
     }
   },
   mounted() {
-    window.fetch('/api/images?count=50')
-      .then(res => res.json())
-      .then(res => { this.images = res.images })
+    this.fetchImages()
   },
   computed: {
     currentOverlay() {
@@ -72,6 +70,11 @@ export default {
       this.currentImage = image
       this.overlays.pop()
       this.overlays.push('imagePreview')
+    },
+    fetchImages() {
+      window.fetch('/api/images?count=50')
+        .then(res => res.json())
+        .then(res => { this.images = res.images })
     }
   }
 }

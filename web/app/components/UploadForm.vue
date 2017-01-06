@@ -20,11 +20,11 @@ function isImage(file) {
 }
 
 function readImageData(file) {
-  const reader = new window.FileReader()
-  reader.readAsDataURL(file)
   return new Promise((resolve, reject) => {
+    const reader = new window.FileReader()
     reader.onload = ev => resolve(ev.target.result)
     reader.onerror = reject
+    reader.readAsDataURL(file)
   })
 }
 
