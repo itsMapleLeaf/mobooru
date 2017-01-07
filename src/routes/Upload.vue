@@ -15,6 +15,10 @@
 </template>
 
 <script>
+import * as firebase from 'firebase'
+import * as crypto from 'crypto'
+import * as path from 'path'
+
 function isImage(file) {
   return /^image\//.test(file.type)
 }
@@ -25,6 +29,14 @@ function readImageData(file) {
     reader.onload = ev => resolve(ev.target.result)
     reader.onerror = reject
     reader.readAsDataURL(file)
+  })
+}
+
+function generateImageID() {
+  return new Promise((resolve, reject) => {
+    crypto.randomBytes(16, (err, buf) => {
+      err ? reject(err) : resolve(buf.toString('hex'))
+    })
   })
 }
 
@@ -61,7 +73,19 @@ export default {
     close() {
       this.$router.push('/')
     },
-    submit() {}
+    submit() {
+      generateImageID()
+      .then(id => {
+        const extension = path.extname(this.imageFile.name)
+        const filename = id + extension
+        const upload = firebase.storage().ref().child('images/' + filename)
+        return upload.put(this.imageFile)
+          .then(() => firebase.database().ref('images').push(id))
+          .then(() => firebase.database().ref('image/' + id).set(upload.fullPath))
+      })
+      .then(() => this.close())
+      .catch(err => console.error(err))
+    }
   }
 }
 </script>
