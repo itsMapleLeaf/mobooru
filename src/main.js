@@ -9,7 +9,7 @@ import VueRouter from 'vue-router'
 import * as firebase from 'firebase'
 import config from './firebase-config'
 
-import Index from './routes/Index.vue'
+import App from './components/App.vue'
 import Upload from './routes/Upload.vue'
 import Image from './routes/Image.vue'
 
@@ -29,6 +29,6 @@ const router = new VueRouter({
 /* eslint no-new: off */
 new Vue({
   el: 'main',
-  render: h => h(Index),
+  render: h => h(App),
   router,
 })

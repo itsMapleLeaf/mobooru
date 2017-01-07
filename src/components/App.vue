@@ -26,11 +26,11 @@
 <script>
 export default {
   components: {
-    ImageList: require('../components/ImageList.vue'),
-    ImageThumbnail: require('../components/ImageThumbnail.vue'),
-    Overlay: require('../components/Overlay.vue'),
-    SiteHeader: require('../components/SiteHeader.vue'),
-    UploadForm: require('../components/UploadForm.vue'),
+    ImageList: require('./ImageList.vue'),
+    ImageThumbnail: require('./ImageThumbnail.vue'),
+    Overlay: require('./Overlay.vue'),
+    SiteHeader: require('./SiteHeader.vue'),
+    UploadForm: require('./UploadForm.vue'),
   },
   data() {
     return {
