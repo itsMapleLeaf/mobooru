@@ -1,40 +1,50 @@
 const {resolve} = require('path')
-const BabiliPlugin = require('babili-webpack-plugin')
+const ExtractTextPlugin = require('extract-text-webpack-plugin')
+const HtmlPlugin = require('html-webpack-plugin')
+const webpack = require('webpack')
 
 const isProduction = process.env.NODE_ENV === 'production'
 
+const extractStyles = new ExtractTextPlugin('styles.css')
+
 const config = {
-  entry: resolve(__dirname, 'src/main.js'),
+  entry: {
+    app: './src/main.js',
+    lib: ['vue', 'vue-router', 'firebase'],
+  },
   output: {
     path: resolve(__dirname, 'build'),
-    filename: 'bundle.js',
-    publicPath: '/build/'
+    filename: '[name].js',
+    publicPath: '/'
   },
   module: {
     rules: [
       { test: /\.js$/, loader: 'babel-loader' },
-      { test: /\.css$/, loader: 'style-loader!css-loader' },
-      { test: /\.scss$/, loader: 'style-loader!css-loader!sass-loader' },
+      { test: /\.css$/, loader: extractStyles.extract('css-loader') },
+      { test: /\.scss$/, loader: extractStyles.extract('css-loader!sass-loader') },
       { test: /\.(ttf|woff2?|eot|svg)$/, loader: 'file-loader' },
       {
         test: /\.vue$/,
         loader: 'vue-loader',
         options: {
           loaders: {
-            scss: 'style-loader!css-loader!sass-loader'
+            scss: extractStyles.extract('css-loader!sass-loader')
           }
         }
       },
     ]
   },
-  plugins: [],
+  plugins: [
+    new webpack.optimize.CommonsChunkPlugin({ name: 'lib' }),
+    new HtmlPlugin({ template: './src/index.html' }),
+    extractStyles,
+  ],
   devtool: 'source-map',
 }
 
 if (isProduction) {
   console.log('[INFO] Building for production.')
   config.devtool = undefined
-  config.plugins.push(new BabiliPlugin())
 }
 
 module.exports = config
