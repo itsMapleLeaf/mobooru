@@ -54,15 +54,15 @@ export function initVue() {
 }
 
 export async function fetchImageList() {
-  const data = await firebase.database().ref('images').limitToLast(50).once('value')
+  const data = await firebase.database().ref('/images/list').limitToLast(50).once('value')
   if (!data.val()) {
-    throw new Error('Could not fetch image list...')
+    return []
   }
   return Object.values(data.val()).reverse()
 }
 
 export async function fetchImageURL(id) {
-  const data = await firebase.database().ref('image/' + id).once('value')
+  const data = await firebase.database().ref('/images/full/' + id).once('value')
   if (!data.val()) {
     throw new Error(`Could not find image URL for ID ${id}`)
   }
@@ -83,14 +83,16 @@ export function readImageData(file) {
 }
 
 export async function uploadImage(imageFile) {
+  if (!state.user) throw new Error('User not logged in.')
+
   const id = await generateImageID()
   const extension = path.extname(imageFile.name)
   const filename = id + extension
-  const upload = firebase.storage().ref().child('images/' + filename)
+  const upload = firebase.storage().ref().child(`/users/${state.user.uid}/images/${filename}`)
 
   await upload.put(imageFile)
-  await firebase.database().ref('images').push(id)
-  await firebase.database().ref('image/' + id).set(upload.fullPath)
+  await firebase.database().ref('/images/list').push(id)
+  await firebase.database().ref('/images/full/' + id).set(upload.fullPath)
 
   return id
 }
