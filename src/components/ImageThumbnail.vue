@@ -14,7 +14,7 @@ export default {
       src: '',
     }
   },
-  mounted() {
+  created() {
     firebase.database().ref('image/' + this.id).once('value')
     .then(data => firebase.storage().ref(data.val()).getDownloadURL())
     .then(url => { this.src = url })

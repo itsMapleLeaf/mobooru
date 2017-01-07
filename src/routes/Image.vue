@@ -1,13 +1,26 @@
 <template>
   <overlay @close="$router.push('/')">
-    <img :src="`/api/image/${$route.params.image}`" @click="$router.push('/')">
+    <img :src="src" @click="$router.push('/')">
   </overlay>
 </template>
 
 <script>
+import * as firebase from 'firebase'
+
 export default {
   components: {
     Overlay: require('../components/Overlay.vue'),
+  },
+  data() {
+    return {
+      src: ''
+    }
+  },
+  created() {
+    firebase.database().ref('image/' + this.$route.params.id).once('value')
+    .then(data => firebase.storage().ref(data.val()).getDownloadURL())
+    .then(url => { this.src = url })
+    .catch(err => console.log(err))
   }
 }
 </script>
