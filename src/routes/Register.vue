@@ -1,7 +1,9 @@
 <template>
   <overlay @close="$router.push('/')">
     <form @submit.prevent="submit">
-      <h2>Login</h2>
+      <fieldset>
+        <h2>Register</h2>
+      </fieldset>
       <fieldset>
         <i class="mb-input-icon mdi mdi-email"></i>
         <input class="mb-input mb-input--hasIcon" type="text" placeholder="user@example.com" v-model="email" ref="emailField">
@@ -11,11 +13,12 @@
         <input class="mb-input mb-input--hasIcon" type="password" placeholder="••••••••" v-model="password">
       </fieldset>
       <fieldset>
-        <button class="mb-button mb-button--primary" action="submit">Go</button>
+        <i class="mb-input-icon mdi mdi-lock"></i>
+        <input class="mb-input mb-input--hasIcon" type="password" placeholder="•••••••• (again)" v-model="passwordAgain">
       </fieldset>
-      <router-link to="/register">
-        <small class="mb-link">New here? Click to join!</small>
-      </router-link>
+      <fieldset>
+        <button class="mb-button mb-button--primary" action="submit">Create Account</button>
+      </fieldset>
     </form>
   </overlay>
 </template>
@@ -30,6 +33,7 @@ export default {
     return {
       email: '',
       password: '',
+      passwordAgain: '',
     }
   },
   mounted() {
@@ -39,9 +43,11 @@ export default {
   },
   methods: {
     submit() {
-      firebase.auth().signInWithEmailAndPassword(this.email, this.password)
-      .then(() => this.$router.push('/'))
-      .catch(err => console.error(err))
+      if (this.password === this.passwordAgain) {
+        firebase.auth().createUserWithEmailAndPassword(this.email, this.password)
+        .then(() => this.$router.push('/'))
+        .catch(error => console.error(error))
+      }
     }
   }
 }

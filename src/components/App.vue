@@ -12,9 +12,12 @@
         <router-link to="/upload" class="mb-button header-item">
           <i class="mdi mdi-upload"></i>
         </router-link>
-        <router-link to="/login" class="mb-button header-item">
+        <router-link v-if="user == null" to="/login" class="mb-button header-item">
           <i class="mdi mdi-login"></i>
         </router-link>
+        <a class="mb-button header-item" href="#" v-if="user != null" @click="logout">
+          <i class="mdi mdi-logout"></i>
+        </a>
       </SiteHeader>
       <ImageList class="container-item container-item--stretch">
         <!-- <router-link v-for="image in images" :to="'/image/' + image">
@@ -27,6 +30,8 @@
 </template>
 
 <script>
+import * as firebase from 'firebase'
+
 export default {
   components: {
     ImageList: require('./ImageList.vue'),
@@ -37,17 +42,28 @@ export default {
   },
   data() {
     return {
+      user: null,
       images: [],
+      unsubscribe: null,
     }
   },
-  mounted() {
-    // this.fetchImages()
+  created() {
+    this.unsubscribe = firebase.auth().onAuthStateChanged(this.handleAuthState)
+  },
+  destroyed() {
+    this.unsubscribe()
   },
   methods: {
+    handleAuthState(user) {
+      this.user = user
+    },
     fetchImages() {
       window.fetch('/api/list?count=50')
         .then(res => res.json())
         .then(res => { this.images = res.images })
+    },
+    logout() {
+      firebase.auth().signOut()
     }
   }
 }
