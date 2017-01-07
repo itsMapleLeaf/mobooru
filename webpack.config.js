@@ -14,8 +14,7 @@ const config = {
   },
   output: {
     path: resolve(__dirname, 'build'),
-    filename: '[name].js',
-    publicPath: '/'
+    filename: '[name].js'
   },
   module: {
     rules: [
