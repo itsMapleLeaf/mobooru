@@ -12,6 +12,9 @@
         <router-link to="/upload" class="mb-button header-item">
           <i class="mdi mdi-upload"></i>
         </router-link>
+        <router-link to="/login" class="mb-button header-item">
+          <i class="mdi mdi-login"></i>
+        </router-link>
       </SiteHeader>
       <ImageList class="container-item container-item--stretch">
         <!-- <router-link v-for="image in images" :to="'/image/' + image">

@@ -13,7 +13,7 @@
 
 .overlay-shade {
   @include fullscreen;
-  @include flex(row, center, flex-start);
+  @include flex(row, center, center);
   background-color: rgba(0, 0, 0, 0.5);
   transition: 0.3s;
   padding: 2em 1em;

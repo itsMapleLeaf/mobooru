@@ -21,7 +21,6 @@ $primary-alt: rgb(41, 128, 185);
 
 .mb-button--primary {
   background-color: $primary;
-  &:hover { background-color: $primary-alt }
   &:focus { background-color: $primary-alt }
 
   &, &:hover, &:focus, &:active { color: white }
@@ -30,10 +29,25 @@ $primary-alt: rgb(41, 128, 185);
 .mb-input {
   border-bottom: 2px solid #ddd;
   transition: 0.2s border-bottom-color;
-  padding: 0.3em 0.6em;
+  padding: 0.3em 0.4em;
   display: inline-block;
 }
 
-.mb-input:hover, .mb-input:focus {
+.mb-input:focus {
   border-bottom: 2px solid lightskyblue;
+}
+
+.mb-input-icon {
+  position: absolute;
+  padding: 0.3em 0.4em;
+  opacity: 0.5;
+  pointer-events: none;
+}
+
+.mb-input--hasIcon {
+  padding-left: 1.8em;
+}
+
+.mb-link {
+  color: $primary;
 }
