@@ -8,19 +8,14 @@ import './styles/transitions.scss'
 import Vue from 'vue'
 import VueRouter from 'vue-router'
 import * as firebase from 'firebase'
+import config from './firebase-config'
 
 import Index from './routes/Index.vue'
 import Upload from './routes/Upload.vue'
 import Image from './routes/Image.vue'
 
 // init firebase
-firebase.initializeApp({
-  apiKey: 'AIzaSyCaHZ0GElyOmXKkc-LeEdD1FNtL1uxufjY',
-  authDomain: 'mobooru-27d7f.firebaseapp.com',
-  databaseURL: 'https://mobooru-27d7f.firebaseio.com',
-  storageBucket: 'mobooru-27d7f.appspot.com',
-  messagingSenderId: '656274868388'
-})
+firebase.initializeApp(config)
 
 // init vue router
 Vue.use(VueRouter)
