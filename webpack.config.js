@@ -27,6 +27,7 @@ const config = {
       },
     ]
   },
+  plugins: [],
   devtool: 'source-map',
 }
 

@@ -1,7 +1,7 @@
 <template>
   <main>
     <section class="container">
-      <SiteHeader class="container-item">
+      <site-header class="container-item">
         <h2 class="header-title header-item">
           <router-link to="/">mobooru</router-link>
         </h2>
@@ -24,12 +24,12 @@
             <i class="mdi mdi-login"></i>
           </router-link>
         </template>
-      </SiteHeader>
-      <ImageList class="container-item container-item--stretch">
+      </site-header>
+      <image-list class="container-item container-item--stretch">
         <router-link v-for="id in images" :to="'/image/' + id">
-          <ImageThumbnail :id="id"></ImageThumbnail>
+          <image-thumbnail :id="id"></image-thumbnail>
         </router-link>
-      </ImageList>
+      </image-list>
     </section>
     <router-view></router-view>
   </main>
@@ -40,11 +40,9 @@ import * as firebase from 'firebase'
 
 export default {
   components: {
-    ImageList: require('./ImageList.vue'),
-    ImageThumbnail: require('./ImageThumbnail.vue'),
-    Overlay: require('./Overlay.vue'),
-    SiteHeader: require('./SiteHeader.vue'),
-    UploadForm: require('./UploadForm.vue'),
+    ImageList: require('../components/ImageList.vue'),
+    ImageThumbnail: require('../components/ImageThumbnail.vue'),
+    SiteHeader: require('../components/SiteHeader.vue'),
   },
   data() {
     return {

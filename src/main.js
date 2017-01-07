@@ -9,7 +9,7 @@ import VueRouter from 'vue-router'
 import * as firebase from 'firebase'
 import config from './firebase-config'
 
-import App from './components/App.vue'
+import App from './views/App.vue'
 
 // init firebase
 firebase.initializeApp(config)
@@ -19,11 +19,11 @@ Vue.use(VueRouter)
 const router = new VueRouter({
   routes: [
     // { path: '/', component: Index },
-    { path: '/upload', component: require('./routes/Upload.vue') },
-    { path: '/image/:id', component: require('./routes/Image.vue') },
-    { path: '/login', component: require('./routes/Login.vue') },
-    { path: '/register', component: require('./routes/Register.vue') },
-    { path: '/signout', component: require('./routes/SignOut.vue') },
+    { path: '/upload', component: require('./views/Upload.vue') },
+    { path: '/image/:id', component: require('./views/Image.vue') },
+    { path: '/login', component: require('./views/Login.vue') },
+    { path: '/register', component: require('./views/Register.vue') },
+    { path: '/signout', component: require('./views/SignOut.vue') },
   ]
 })
 
