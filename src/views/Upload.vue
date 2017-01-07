@@ -15,30 +15,7 @@
 </template>
 
 <script>
-import * as firebase from 'firebase'
-import * as crypto from 'crypto'
-import * as path from 'path'
-
-function isImage(file) {
-  return /^image\//.test(file.type)
-}
-
-function readImageData(file) {
-  return new Promise((resolve, reject) => {
-    const reader = new window.FileReader()
-    reader.onload = ev => resolve(ev.target.result)
-    reader.onerror = reject
-    reader.readAsDataURL(file)
-  })
-}
-
-function generateImageID() {
-  return new Promise((resolve, reject) => {
-    crypto.randomBytes(16, (err, buf) => {
-      err ? reject(err) : resolve(buf.toString('hex'))
-    })
-  })
-}
+import * as store from '../store'
 
 export default {
   components: {
@@ -61,8 +38,8 @@ export default {
       this.setImage(ev.dataTransfer.files[0])
     },
     setImage(file) {
-      if (isImage(file)) {
-        readImageData(file)
+      if (store.isImage(file)) {
+        store.readImageData(file)
           .then(src => {
             this.imageFile = file
             this.imageSource = src
@@ -74,17 +51,9 @@ export default {
       this.$router.push('/')
     },
     submit() {
-      generateImageID()
-      .then(id => {
-        const extension = path.extname(this.imageFile.name)
-        const filename = id + extension
-        const upload = firebase.storage().ref().child('images/' + filename)
-        return upload.put(this.imageFile)
-          .then(() => firebase.database().ref('images').push(id))
-          .then(() => firebase.database().ref('image/' + id).set(upload.fullPath))
-      })
-      .then(() => this.close())
-      .catch(err => console.error(err))
+      store.uploadImage(this.imageFile)
+        .then(id => this.$router.push('/image/' + id))
+        .catch(err => console.error(err))
     }
   }
 }

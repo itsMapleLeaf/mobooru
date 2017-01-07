@@ -3,7 +3,7 @@
 </template>
 
 <script>
-import * as firebase from 'firebase'
+import * as store from '../store'
 
 export default {
   props: {
@@ -15,10 +15,9 @@ export default {
     }
   },
   created() {
-    firebase.database().ref('image/' + this.id).once('value')
-    .then(data => firebase.storage().ref(data.val()).getDownloadURL())
-    .then(url => { this.src = url })
-    .catch(err => console.log(err))
+    store.fetchImageURL(this.id)
+      .then(url => { this.src = url })
+      .catch(err => console.log(err))
   }
 }
 </script>

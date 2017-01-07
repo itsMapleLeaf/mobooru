@@ -10,7 +10,7 @@
           <i class="mdi mdi-magnify"></i>
         </button>
 
-        <template v-if="user">
+        <template v-if="loggedIn">
           <router-link to="/upload" class="mb-button header-item">
             <i class="mdi mdi-upload"></i>
           </router-link>
@@ -36,7 +36,7 @@
 </template>
 
 <script>
-import * as firebase from 'firebase'
+import * as store from '../store'
 
 export default {
   components: {
@@ -44,26 +44,17 @@ export default {
     ImageThumbnail: require('../components/ImageThumbnail.vue'),
     SiteHeader: require('../components/SiteHeader.vue'),
   },
-  data() {
-    return {
-      user: null,
-      images: [],
-    }
-  },
+  data: () => ({
+    images: []
+  }),
   created() {
-    firebase.auth().onAuthStateChanged(this.handleAuthState)
-    this.fetchImages()
+    store.fetchImageList()
+      .then(images => { this.images = images })
+      .catch(err => console.log(err))
   },
-  methods: {
-    handleAuthState(user) {
-      this.user = user
-    },
-    fetchImages() {
-      firebase.database().ref('images').limitToLast(50).once('value')
-      .then(data => { this.images = Object.values(data.val()).reverse() })
-      .catch(err => { console.err(err) })
-    }
-  }
+  computed: {
+    loggedIn() { return store.state.user != null }
+  },
 }
 </script>
 

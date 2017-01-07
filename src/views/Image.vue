@@ -5,7 +5,7 @@
 </template>
 
 <script>
-import * as firebase from 'firebase'
+import * as store from '../store'
 
 export default {
   components: {
@@ -17,10 +17,9 @@ export default {
     }
   },
   created() {
-    firebase.database().ref('image/' + this.$route.params.id).once('value')
-    .then(data => firebase.storage().ref(data.val()).getDownloadURL())
-    .then(url => { this.src = url })
-    .catch(err => console.log(err))
+    store.fetchImageURL(this.$route.params.id)
+      .then(url => { this.src = url })
+      .catch(err => console.log(err))
   }
 }
 </script>

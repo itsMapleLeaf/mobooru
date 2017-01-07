@@ -5,7 +5,7 @@
         <p>Are you sure you want to sign out?</p>
       </fieldset>
       <fieldset>
-        <button class="mb-button mb-button--success" @click="signout">Sign Out</button>
+        <button class="mb-button mb-button--success" @click="signOut">Sign Out</button>
         <button class="mb-button mb-button--error" @click="$router.push('/')">Cancel</button>
       </fieldset>
     </form>
@@ -14,13 +14,13 @@
 
 <script>
 import Overlay from '../components/Overlay.vue'
-import * as firebase from 'firebase'
+import * as store from '../store'
 
 export default {
   components: {Overlay},
   methods: {
-    signout() {
-      firebase.auth().signOut().then(() => this.$router.push('/'))
+    signOut() {
+      store.signOut().then(() => this.$router.push('/'))
     }
   }
 }

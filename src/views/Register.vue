@@ -25,7 +25,7 @@
 
 <script>
 import Overlay from '../components/Overlay.vue'
-import * as firebase from 'firebase'
+import * as store from '../store'
 
 export default {
   components: { Overlay },
@@ -44,9 +44,9 @@ export default {
   methods: {
     submit() {
       if (this.password === this.passwordAgain) {
-        firebase.auth().createUserWithEmailAndPassword(this.email, this.password)
-        .then(() => this.$router.push('/'))
-        .catch(error => console.error(error))
+        store.register(this.email, this.password)
+          .then(() => this.$router.push('/'))
+          .catch(error => console.error(error))
       }
     }
   }
