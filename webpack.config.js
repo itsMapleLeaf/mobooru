@@ -13,7 +13,7 @@ const config = {
     lib: ['vue', 'vue-router', 'firebase'],
   },
   output: {
-    path: resolve(__dirname, 'build'),
+    path: resolve(__dirname, 'mobooru'),
     filename: '[name].js'
   },
   module: {
