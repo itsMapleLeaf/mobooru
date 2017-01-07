@@ -4,6 +4,7 @@
   "version": "0.1.0",
   "description": "a mobile-friendly image browser",
   "license": "MIT",
+  "repository": "https://github.com/just-nobody/mobooru",
   "scripts": {
     "build": "cross-env NODE_ENV=production webpack -p",
     "dev": "cross-env NODE_ENV=development webpack-dev-server --inline --hot --open"
