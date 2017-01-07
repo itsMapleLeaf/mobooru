@@ -13,11 +13,13 @@
 
 .overlay-shade {
   @include fullscreen;
-  @include flex(row, center, center);
   background-color: rgba(0, 0, 0, 0.5);
   transition: 0.3s;
   padding: 2em 1em;
   overflow-y: auto;
+
+  display: flex;
+  flex-direction: column;
 }
 
 .overlay-panel {
@@ -26,6 +28,10 @@
   max-width: 100%;
   background-color: white;
   box-shadow: 0 0.1em 0.3em rgba(0, 0, 0, 0.3);
+
+  // somehow makes it center while also overflowing and scrolling properly
+  // flex is fucking stupid
+  margin: auto;
 }
 
 @keyframes fade {
