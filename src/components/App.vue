@@ -9,15 +9,21 @@
         <button class="mb-button header-item">
           <i class="mdi mdi-magnify"></i>
         </button>
-        <router-link to="/upload" class="mb-button header-item">
-          <i class="mdi mdi-upload"></i>
-        </router-link>
-        <router-link to="/login" v-if="user == null" class="mb-button header-item">
-          <i class="mdi mdi-login"></i>
-        </router-link>
-        <router-link to="/signout" v-if="user" class="mb-button header-item">
-          <i class="mdi mdi-logout"></i>
-        </router-link>
+
+        <template v-if="user">
+          <router-link to="/upload" class="mb-button header-item">
+            <i class="mdi mdi-upload"></i>
+          </router-link>
+          <router-link to="/signout" class="mb-button header-item">
+            <i class="mdi mdi-logout"></i>
+          </router-link>
+        </template>
+
+        <template v-else>
+          <router-link to="/login" class="mb-button header-item">
+            <i class="mdi mdi-login"></i>
+          </router-link>
+        </template>
       </SiteHeader>
       <ImageList class="container-item container-item--stretch">
         <!-- <router-link v-for="image in images" :to="'/image/' + image">
