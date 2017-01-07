@@ -16,10 +16,8 @@ export default {
       src: ''
     }
   },
-  created() {
-    store.fetchImageURL(this.$route.params.id)
-      .then(url => { this.src = url })
-      .catch(err => console.log(err))
+  async created() {
+    this.src = await store.fetchImageURL(this.$route.params.id)
   }
 }
 </script>

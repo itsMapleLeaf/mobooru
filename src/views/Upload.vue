@@ -37,23 +37,18 @@ export default {
     handleDrop(ev) {
       this.setImage(ev.dataTransfer.files[0])
     },
-    setImage(file) {
+    async setImage(file) {
       if (store.isImage(file)) {
-        store.readImageData(file)
-          .then(src => {
-            this.imageFile = file
-            this.imageSource = src
-          })
-          .catch(err => console.error(err))
+        this.imageSource = await store.readImageData(file)
+        this.imageFile = file
       }
     },
     close() {
       this.$router.push('/')
     },
-    submit() {
-      store.uploadImage(this.imageFile)
-        .then(id => this.$router.push('/image/' + id))
-        .catch(err => console.error(err))
+    async submit() {
+      const id = await store.uploadImage(this.imageFile)
+      this.$router.push('/image/' + id)
     }
   }
 }

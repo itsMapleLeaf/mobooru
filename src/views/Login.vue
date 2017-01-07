@@ -32,16 +32,14 @@ export default {
       password: '',
     }
   },
-  mounted() {
-    this.$nextTick(() => {
-      this.$refs.emailField.focus()
-    })
+  async mounted() {
+    await this.$nextTick()
+    this.$refs.emailField.focus()
   },
   methods: {
-    submit() {
-      store.signIn(this.email, this.password)
-        .then(() => this.$router.push('/'))
-        .catch(err => console.error(err))
+    async submit() {
+      await store.signIn(this.email, this.password)
+      this.$router.push('/')
     }
   }
 }

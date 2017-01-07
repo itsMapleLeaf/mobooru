@@ -9,7 +9,7 @@ const extractStyles = new ExtractTextPlugin('styles.css')
 
 const config = {
   entry: {
-    app: './src/main.js',
+    app: ['regenerator-runtime/runtime', './src/main.js'],
     lib: ['vue', 'vue-router', 'firebase'],
   },
   output: {
@@ -19,7 +19,7 @@ const config = {
   },
   module: {
     rules: [
-      { test: /\.js$/, loader: 'babel-loader' },
+      { test: /\.js$/, loader: 'babel-loader', exclude: /node_modules/ },
       { test: /\.css$/, loader: extractStyles.extract('css-loader') },
       { test: /\.scss$/, loader: extractStyles.extract('css-loader!sass-loader') },
       { test: /\.(ttf|woff2?|eot|svg)$/, loader: 'file-loader' },

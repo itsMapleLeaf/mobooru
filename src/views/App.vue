@@ -47,10 +47,8 @@ export default {
   data: () => ({
     images: []
   }),
-  created() {
-    store.fetchImageList()
-      .then(images => { this.images = images })
-      .catch(err => console.log(err))
+  async created() {
+    this.images = await store.fetchImageList()
   },
   computed: {
     loggedIn() { return store.state.user != null }

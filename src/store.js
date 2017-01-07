@@ -53,16 +53,20 @@ export function initVue() {
   })
 }
 
-export function fetchImageList() {
-  return firebase.database().ref('images').limitToLast(50).once('value')
-    .then(data => data.val() || Promise.reject('Could not fetch image list...'))
-    .then(images => Object.values(images).reverse())
+export async function fetchImageList() {
+  const data = await firebase.database().ref('images').limitToLast(50).once('value')
+  if (!data.val()) {
+    throw new Error('Could not fetch image list...')
+  }
+  return Object.values(data.val()).reverse()
 }
 
-export function fetchImageURL(id) {
-  return firebase.database().ref('image/' + id).once('value')
-    .then(data => data.val() || Promise.reject(`Could not find image URL for ID ${id}`))
-    .then(path => firebase.storage().ref(path).getDownloadURL())
+export async function fetchImageURL(id) {
+  const data = await firebase.database().ref('image/' + id).once('value')
+  if (!data.val()) {
+    throw new Error(`Could not find image URL for ID ${id}`)
+  }
+  return await firebase.storage().ref(data.val()).getDownloadURL()
 }
 
 export function isImage(file) {
@@ -78,17 +82,17 @@ export function readImageData(file) {
   })
 }
 
-export function uploadImage(imageFile) {
-  return generateImageID()
-    .then(id => {
-      const extension = path.extname(imageFile.name)
-      const filename = id + extension
-      const upload = firebase.storage().ref().child('images/' + filename)
-      return upload.put(imageFile)
-        .then(() => firebase.database().ref('images').push(id))
-        .then(() => firebase.database().ref('image/' + id).set(upload.fullPath))
-        .then(() => id)
-    })
+export async function uploadImage(imageFile) {
+  const id = await generateImageID()
+  const extension = path.extname(imageFile.name)
+  const filename = id + extension
+  const upload = firebase.storage().ref().child('images/' + filename)
+
+  await upload.put(imageFile)
+  await firebase.database().ref('images').push(id)
+  await firebase.database().ref('image/' + id).set(upload.fullPath)
+
+  return id
 }
 
 export function signIn(email, pass) {

@@ -36,17 +36,15 @@ export default {
       passwordAgain: '',
     }
   },
-  mounted() {
-    this.$nextTick(() => {
-      this.$refs.emailField.focus()
-    })
+  async mounted() {
+    await this.$nextTick()
+    this.$refs.emailField.focus()
   },
   methods: {
-    submit() {
+    async submit() {
       if (this.password === this.passwordAgain) {
-        store.register(this.email, this.password)
-          .then(() => this.$router.push('/'))
-          .catch(error => console.error(error))
+        await store.register(this.email, this.password)
+        this.$router.push('/')
       }
     }
   }

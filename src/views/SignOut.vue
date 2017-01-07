@@ -19,8 +19,9 @@ import * as store from '../store'
 export default {
   components: {Overlay},
   methods: {
-    signOut() {
-      store.signOut().then(() => this.$router.push('/'))
+    async signOut() {
+      await store.signOut()
+      this.$router.push('/')
     }
   }
 }
