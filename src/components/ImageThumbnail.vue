@@ -1,11 +1,24 @@
 <template>
-  <a href='#' class="thumbnail" :style="`background-image: url(/api/image/${id}/thumb)`"></a>
+  <a href='#' class="thumbnail" :style="`background-image: url(${src})`"></a>
 </template>
 
 <script>
+import * as firebase from 'firebase'
+
 export default {
   props: {
     id: String,
+  },
+  data() {
+    return {
+      src: '',
+    }
+  },
+  mounted() {
+    firebase.database().ref('image/' + this.id).once('value')
+    .then(data => firebase.storage().ref(data.val()).getDownloadURL())
+    .then(url => { this.src = url })
+    .catch(err => console.log(err))
   }
 }
 </script>

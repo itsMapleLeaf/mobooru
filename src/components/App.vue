@@ -26,9 +26,9 @@
         </template>
       </SiteHeader>
       <ImageList class="container-item container-item--stretch">
-        <!-- <router-link v-for="image in images" :to="'/image/' + image">
-          <ImageThumbnail :id="image"></ImageThumbnail>
-        </router-link> -->
+        <router-link v-for="id in images" :to="'/image/' + id">
+          <ImageThumbnail :id="id"></ImageThumbnail>
+        </router-link>
       </ImageList>
     </section>
     <router-view></router-view>
@@ -54,15 +54,16 @@ export default {
   },
   created() {
     firebase.auth().onAuthStateChanged(this.handleAuthState)
+    this.fetchImages()
   },
   methods: {
     handleAuthState(user) {
       this.user = user
     },
     fetchImages() {
-      window.fetch('/api/list?count=50')
-        .then(res => res.json())
-        .then(res => { this.images = res.images })
+      firebase.database().ref('images').limitToLast(50).once('value')
+      .then(data => { this.images = Object.values(data.val()).reverse() })
+      .catch(err => { console.err(err) })
     }
   }
 }
