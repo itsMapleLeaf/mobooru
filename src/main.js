@@ -23,6 +23,7 @@ const router = new VueRouter({
     { path: '/image/:image', component: require('./routes/Image.vue') },
     { path: '/login', component: require('./routes/Login.vue') },
     { path: '/register', component: require('./routes/Register.vue') },
+    { path: '/signout', component: require('./routes/SignOut.vue') },
   ]
 })
 

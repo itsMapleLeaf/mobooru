@@ -12,12 +12,12 @@
         <router-link to="/upload" class="mb-button header-item">
           <i class="mdi mdi-upload"></i>
         </router-link>
-        <router-link v-if="user == null" to="/login" class="mb-button header-item">
+        <router-link to="/login" v-if="user == null" class="mb-button header-item">
           <i class="mdi mdi-login"></i>
         </router-link>
-        <a class="mb-button header-item" href="#" v-if="user != null" @click="logout">
+        <router-link to="/signout" v-if="user" class="mb-button header-item">
           <i class="mdi mdi-logout"></i>
-        </a>
+        </router-link>
       </SiteHeader>
       <ImageList class="container-item container-item--stretch">
         <!-- <router-link v-for="image in images" :to="'/image/' + image">
@@ -61,9 +61,6 @@ export default {
       window.fetch('/api/list?count=50')
         .then(res => res.json())
         .then(res => { this.images = res.images })
-    },
-    logout() {
-      firebase.auth().signOut()
     }
   }
 }
