@@ -50,14 +50,10 @@ export default {
     return {
       user: null,
       images: [],
-      unsubscribe: null,
     }
   },
   created() {
-    this.unsubscribe = firebase.auth().onAuthStateChanged(this.handleAuthState)
-  },
-  destroyed() {
-    this.unsubscribe()
+    firebase.auth().onAuthStateChanged(this.handleAuthState)
   },
   methods: {
     handleAuthState(user) {
