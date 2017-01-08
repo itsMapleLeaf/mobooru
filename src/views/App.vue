@@ -7,21 +7,21 @@
         </h2>
         <input class="mb-input header-item header-item--stretch" placeholder="Search...">
         <button class="mb-button header-item">
-          <i class="mdi mdi-magnify"></i>
+          <icon>magnify</icon>
         </button>
 
         <template v-if="user">
           <router-link to="/upload" class="mb-button header-item">
-            <i class="mdi mdi-upload"></i>
+            <icon>upload</icon>
           </router-link>
           <router-link to="/signout" class="mb-button header-item">
-            <i class="mdi mdi-logout"></i>
+            <icon>logout</icon>
           </router-link>
         </template>
 
         <template v-else>
           <router-link to="/login" class="mb-button header-item">
-            <i class="mdi mdi-login"></i>
+            <icon>login</icon>
           </router-link>
         </template>
       </site-header>
@@ -37,6 +37,7 @@ import * as store from '../store'
 
 export default {
   components: {
+    Icon: require('../components/Icon.vue'),
     ImageList: require('../components/ImageList.vue'),
     ImageThumbnail: require('../components/ImageThumbnail.vue'),
     SiteHeader: require('../components/SiteHeader.vue'),
