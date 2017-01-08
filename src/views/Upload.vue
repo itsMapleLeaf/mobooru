@@ -70,9 +70,8 @@ export default {
 
       const total = this.imageFiles.length
       for (let i = 0; i < total; i++) {
-        const file = this.imageFiles[i]
-        await store.uploadImage(file, percent => {
-          this.uploadProgress = (i + percent) / total
+        await store.uploadImage(this.imageFiles[i], progress => {
+          this.uploadProgress = (i + progress) / total
         })
       }
 

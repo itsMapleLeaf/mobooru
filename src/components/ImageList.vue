@@ -3,7 +3,7 @@
     <section class="imageList-list">
       <slot></slot>
     </section>
-    <a href='#' class="imageList-loadMore">moar pls!</a>
+    <!-- <a href='#' class="imageList-loadMore">moar pls!</a> -->
   </section>
 </template>
 
