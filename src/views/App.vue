@@ -25,11 +25,7 @@
           </router-link>
         </template>
       </site-header>
-      <image-list class="container-item container-item--stretch">
-        <router-link v-for="id in images" :to="'/image/' + id">
-          <image-thumbnail :id="id"></image-thumbnail>
-        </router-link>
-      </image-list>
+      <image-list class="container-item container-item--stretch" :images='images'></image-list>
     </section>
     <router-view></router-view>
   </main>

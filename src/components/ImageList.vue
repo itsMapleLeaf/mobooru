@@ -1,11 +1,24 @@
 <template>
   <section class="imageList-container">
     <section class="imageList-list">
-      <slot></slot>
+      <router-link v-for="id in images" :to="'/image/' + id">
+        <image-thumbnail :id="id"></image-thumbnail>
+      </router-link>
     </section>
     <!-- <a href='#' class="imageList-loadMore">moar pls!</a> -->
   </section>
 </template>
+
+<script>
+export default {
+  components: {
+    ImageThumbnail: require('./ImageThumbnail.vue'),
+  },
+  props: {
+    images: String,
+  }
+}
+</script>
 
 <style lang="scss" scoped>
 @import '../styles/mixins';
