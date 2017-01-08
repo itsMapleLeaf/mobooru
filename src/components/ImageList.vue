@@ -1,7 +1,7 @@
 <template>
   <section class="imageList-container">
     <section class="imageList-list">
-      <router-link v-for="id in images" :to="'/image/' + id">
+      <router-link class="imageList-image" v-for="id in images" :to="'/image/' + id">
         <image-thumbnail :id="id"></image-thumbnail>
       </router-link>
     </section>
@@ -33,6 +33,11 @@ export default {
   padding: 0.5em;
   overflow-y: auto;
   align-content: flex-start;
+}
+
+.imageList-image {
+  display: block;
+  line-height: 1;
 }
 
 .imageList-loadMore {
