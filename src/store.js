@@ -5,16 +5,6 @@ import App from './views/App.vue'
 import Vue from 'vue'
 import VueRouter from 'vue-router'
 
-// private
-function generateImageID() {
-  return new Promise((resolve, reject) => {
-    crypto.randomBytes(16, (err, buf) => {
-      err ? reject(err) : resolve(buf.toString('hex'))
-    })
-  })
-}
-
-// public
 export const state = {
   user: null,
 }
@@ -82,7 +72,15 @@ export function readImageData(file) {
   })
 }
 
-export async function uploadImage(imageFile) {
+export function generateImageID() {
+  return new Promise((resolve, reject) => {
+    crypto.randomBytes(16, (err, buf) => {
+      err ? reject(err) : resolve(buf.toString('hex'))
+    })
+  })
+}
+
+export async function uploadImage(imageFile, progressCallback) {
   if (!state.user) throw new Error('User not logged in.')
 
   const id = await generateImageID()
@@ -90,7 +88,15 @@ export async function uploadImage(imageFile) {
   const filename = id + extension
   const upload = firebase.storage().ref().child(`/users/${state.user.uid}/images/${filename}`)
 
-  await upload.put(imageFile)
+  const uploadTask = upload.put(imageFile)
+
+  if (progressCallback) {
+    uploadTask.on(firebase.storage.TaskEvent.STATE_CHANGED, data => {
+      progressCallback(data.bytesTransferred / data.totalBytes)
+    })
+  }
+
+  await uploadTask
   await firebase.database().ref('/images/list').push(id)
   await firebase.database().ref('/images/full/' + id).set(upload.fullPath)
 

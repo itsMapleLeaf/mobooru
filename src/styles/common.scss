@@ -1,13 +1,5 @@
 @import 'mixins';
-
-$primary: rgb(90, 177, 232);
-$primary-alt: rgb(41, 128, 185);
-
-$success: rgb(46, 204, 113);
-$success-alt: rgb(39, 174, 96);
-
-$error: rgb(231, 76, 60);
-$error-alt: rgb(192, 57, 43);
+@import 'colors';
 
 @mixin button-theme($main-color, $alt-color) {
   background-color: $main-color;

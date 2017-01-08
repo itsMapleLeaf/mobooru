@@ -10,7 +10,7 @@
           <i class="mdi mdi-magnify"></i>
         </button>
 
-        <template v-if="loggedIn">
+        <template v-if="user">
           <router-link to="/upload" class="mb-button header-item">
             <i class="mdi mdi-upload"></i>
           </router-link>
@@ -36,6 +36,7 @@
 </template>
 
 <script>
+import * as firebase from 'firebase'
 import * as store from '../store'
 
 export default {
@@ -45,14 +46,13 @@ export default {
     SiteHeader: require('../components/SiteHeader.vue'),
   },
   data: () => ({
-    images: []
+    user: null,
+    images: [],
   }),
   async created() {
+    firebase.auth().onAuthStateChanged(user => { this.user = user })
     this.images = await store.fetchImageList()
-  },
-  computed: {
-    loggedIn() { return store.state.user != null }
-  },
+  }
 }
 </script>
 
