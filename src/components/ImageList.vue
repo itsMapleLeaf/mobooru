@@ -15,7 +15,7 @@ export default {
     ImageThumbnail: require('./ImageThumbnail.vue'),
   },
   props: {
-    images: String,
+    images: Array,
   }
 }
 </script>
